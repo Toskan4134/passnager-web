@@ -26,7 +26,18 @@
             </ul>
         </div>
         <div id="tabla-derecha">
-            <input type="search" placeholder="Buscar...">
+            <div class="search">
+                <select name="filter" id="filter">
+                    <option value="all" disabled selected>Buscar Por...</option>
+                    <option value="all">Todo</option>
+                    <option value="site">Sitio</option>
+                    <option value="url">URL</option>
+                    <option value="user">Usuario</option>
+                    <option value="date">Fecha</option>
+                    <option value="description">Descripción</option>
+                </select>
+                <input type="search" placeholder="Buscar...">
+            </div>
             <h1>Sitios</h1>
             <div class="table-area">
                 <table>
