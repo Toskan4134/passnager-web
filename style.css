@@ -52,15 +52,19 @@ body {
     color: black;
 }
 
-input[type='search'] {
-    border: 2px solid var(--color-enlaces);
+.search {
+    display: flex;
+    width: 50%;
+    gap: 20px;
+}
+.search * {
+    border: none;
     border-radius: 5px;
     font-size: 16px;
     padding: 10px;
     width: 80%;
 }
-
-input[type='search']:focus {
+.search *:focus {
     outline: none;
     box-shadow: 0 0 5px var(--color-enlaces);
 }
@@ -77,6 +81,7 @@ input[type='search']:focus {
     overflow-y: hidden;
 }
 .table-area {
+    border-radius: 5px;
     overflow-y: auto;
     width: 100%;
     max-height: 100%;
