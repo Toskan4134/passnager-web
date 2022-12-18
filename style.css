@@ -19,10 +19,15 @@ body {
 }
 
 #columna-izquierda {
+    display: flex;
+    flex-direction: column;
     width: 25%;
+    gap: 20px;
     background-color: var(--color-categorias);
     padding: 20px;
     min-width: 335px;
+    height: 100vh;
+    box-sizing: border-box;
 }
 .buttons {
     display: flex;
@@ -62,6 +67,7 @@ input[type='search']:focus {
 
 #tabla-derecha {
     display: flex;
+    gap: 20px;
     flex-direction: column;
     align-items: center;
     width: 75%;
@@ -70,9 +76,13 @@ input[type='search']:focus {
     height: calc(100vh - 40px);
     overflow-y: hidden;
 }
-
+.table-area {
+    overflow-y: auto;
+    width: 100%;
+    max-height: 100%;
+}
 h1 {
-    font-size: 18px;
+    font-size: 25px;
     text-align: center;
     color: var(--color-enlaces);
     margin: 0;
@@ -91,6 +101,7 @@ li {
     padding: 10px;
     background-color: var(--color-texto);
     border-radius: 5px;
+    color: black;
 }
 
 table {
@@ -123,6 +134,10 @@ tr {
 
 tr:nth-child(odd) {
     background-color: var(--color-texto);
+    color: black;
+}
+tr:nth-child(even) {
+    background-color: var(--color-categorias);
 }
 .actions {
     display: flex;
