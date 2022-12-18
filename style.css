@@ -1,0 +1,164 @@
+:root {
+    --color-principal: #28262c;
+    --color-categorias: #998fc7;
+    --color-tabla: #d4c2fc;
+    --color-texto: #f9f5ff;
+    --color-enlaces: #14248a;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--color-principal);
+    color: var(--color-texto);
+    height: 100vh;
+}
+
+#contenedor-principal {
+    display: flex;
+}
+
+#columna-izquierda {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    gap: 20px;
+    background-color: var(--color-categorias);
+    padding: 20px;
+    min-width: 335px;
+    height: 100vh;
+    box-sizing: border-box;
+}
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+.buttons button {
+    background-color: var(--color-enlaces);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.buttons button:hover {
+    background-color: var(--color-tabla);
+    color: black;
+}
+
+.search {
+    display: flex;
+    width: 50%;
+    gap: 20px;
+}
+.search * {
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 10px;
+    width: 80%;
+}
+.search *:focus {
+    outline: none;
+    box-shadow: 0 0 5px var(--color-enlaces);
+}
+
+#tabla-derecha {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    width: 75%;
+    background-color: var(--color-tabla);
+    padding: 20px;
+    height: calc(100vh - 40px);
+    overflow-y: hidden;
+}
+.table-area {
+    border-radius: 5px;
+    overflow-y: auto;
+    width: 100%;
+    max-height: 100%;
+}
+h1 {
+    font-size: 25px;
+    text-align: center;
+    color: var(--color-enlaces);
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 90%;
+    overflow-y: auto;
+}
+
+li {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: var(--color-texto);
+    border-radius: 5px;
+    color: black;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    overflow-y: scroll;
+}
+table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+th {
+    background-color: var(--color-enlaces);
+    color: var(--color-texto);
+    font-size: 14px;
+    padding: 10px;
+    max-height: 45px;
+}
+
+td {
+    font-size: 14px;
+    padding: 10px;
+    max-height: 45px;
+}
+tr {
+    max-height: 45px;
+}
+
+tr:nth-child(odd) {
+    background-color: var(--color-texto);
+    color: black;
+}
+tr:nth-child(even) {
+    background-color: var(--color-categorias);
+}
+.actions {
+    display: flex;
+    gap: 10px;
+    justify-content: space-evenly;
+}
+
+table button {
+    background-color: var(--color-enlaces);
+    border: none;
+    color: var(--color-texto);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+table button:hover {
+    background-color: var(--color-categorias);
+}
