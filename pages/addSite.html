@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,7 @@
     <title>Formulario</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../styles/addSiteStyle.css">
+    <script src="../scripts/addSite.js"></script>
 </head>
 
 <body>
@@ -35,8 +36,13 @@
             <div class="campos">
                 <h3>Contraseña</h3>
                 <div class="password-field">
-                    <input type="password" name="contraseña" required>
-                    <i class="bi bi-arrow-counterclockwise"></i>
+                    <div class="password-field-input">
+                        <input id="passwordInput" type="password" name="contraseña" required>
+                        <i id="passwordViewBut" class="bi bi-eye"></i>
+                    </div>
+                    <i id="genPasswordBut" class="bi bi-arrow-counterclockwise">
+                        <div class="hover-popup">Generar Contraseña Aleatoria</div>
+                    </i>
                 </div>
             </div>
 

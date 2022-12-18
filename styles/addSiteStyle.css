@@ -47,13 +47,20 @@ h3 {
     align-items: center;
 }
 i {
+    display: flex;
+    justify-content: center;
+    position: relative;
     cursor: pointer;
     font-size: 22px;
     height: 22px;
     transition: all 0.3s ease-in-out;
 }
-i:hover {
+
+#genPasswordBut:hover {
     transform: rotate(-360deg);
+}
+#genPasswordBut:hover .hover-popup {
+    animation: hoverPopup 1.5s forwards;
 }
 input:not(input[type='submit']),
 textarea {
@@ -65,6 +72,7 @@ textarea {
     box-sizing: border-box;
 }
 textarea {
+    height: 150px;
     resize: none;
     font-family: Arial, sans-serif;
 }
@@ -97,4 +105,47 @@ form {
 .buttons *:hover {
     background-color: #998fc7;
     color: white;
+}
+
+.hover-popup {
+    pointer-events: none;
+    opacity: 0;
+    background-color: var(--color-principal);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    white-space: nowrap;
+    font-size: 15px;
+    top: -200%;
+    width: auto;
+}
+.password-field-input {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+.password-field-input:hover #passwordViewBut {
+    opacity: 1;
+}
+
+#passwordViewBut {
+    cursor: pointer;
+    position: absolute;
+    margin-right: 10px;
+    opacity: 0;
+}
+
+@keyframes hoverPopup {
+    0% {
+        opacity: 0;
+    }
+    70% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.7;
+    }
 }
