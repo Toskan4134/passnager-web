@@ -124,16 +124,21 @@ tr {
 tr:nth-child(odd) {
     background-color: var(--color-texto);
 }
+.actions {
+    display: flex;
+    gap: 10px;
+    justify-content: space-evenly;
+}
 
-button {
+table button {
     background-color: var(--color-enlaces);
     border: none;
     color: var(--color-texto);
-    padding: 5px 10px;
+    padding: 10px;
     border-radius: 5px;
     cursor: pointer;
 }
 
-button:hover {
+table button:hover {
     background-color: var(--color-categorias);
 }
