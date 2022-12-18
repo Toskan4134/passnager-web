@@ -19,7 +19,7 @@ body {
 
 .container {
     padding: 20px;
-    background-color: #d4c2fc;
+    background-color: var(--color-tabla);
     width: 700px;
     border-radius: 10px;
 }
@@ -60,7 +60,7 @@ i {
     transform: rotate(-360deg);
 }
 #genPasswordBut:hover .hover-popup {
-    animation: hoverPopup 1.5s forwards;
+    animation: hoverPopup 1s forwards;
 }
 input:not(input[type='submit']),
 textarea {
@@ -100,11 +100,12 @@ form {
     width: 100%;
     box-sizing: border-box;
     transition: all 0.15s ease-in-out;
+    background-color: var(--color-categorias);
+    color: white;
 }
 
 .buttons *:hover {
-    background-color: #998fc7;
-    color: white;
+    background-color: var(--color-enlaces);
 }
 
 .hover-popup {
