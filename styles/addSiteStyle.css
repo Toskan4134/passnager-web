@@ -41,6 +41,20 @@ h1 {
 h3 {
     margin: 0;
 }
+.password-field {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+i {
+    cursor: pointer;
+    font-size: 22px;
+    height: 22px;
+    transition: all 0.3s ease-in-out;
+}
+i:hover {
+    transform: rotate(-360deg);
+}
 input:not(input[type='submit']),
 textarea {
     outline: none;
@@ -77,4 +91,10 @@ form {
     padding: 10px;
     width: 100%;
     box-sizing: border-box;
+    transition: all 0.15s ease-in-out;
+}
+
+.buttons *:hover {
+    background-color: #998fc7;
+    color: white;
 }
