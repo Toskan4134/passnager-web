@@ -57,6 +57,7 @@ i {
 }
 
 #genPasswordBut:hover {
+    color: var(--color-enlaces);
     transform: rotate(-360deg);
 }
 #genPasswordBut:hover .hover-popup {
@@ -100,12 +101,12 @@ form {
     width: 100%;
     box-sizing: border-box;
     transition: all 0.15s ease-in-out;
-    background-color: var(--color-categorias);
+    background-color: var(--color-enlaces);
     color: white;
 }
 
 .buttons *:hover {
-    background-color: var(--color-enlaces);
+    background-color: var(--color-categorias);
 }
 
 .hover-popup {
@@ -137,6 +138,9 @@ form {
     position: absolute;
     margin-right: 10px;
     opacity: 0;
+}
+#passwordViewBut:hover {
+    color: var(--color-enlaces);
 }
 
 @keyframes hoverPopup {
