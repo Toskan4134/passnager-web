@@ -45,11 +45,12 @@ body {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 5px;
+    transition: all .15s ease-in-out;
 }
 
 .buttons button:hover {
     background-color: var(--color-tabla);
-    color: black;
+    color: var(--color-enlaces);
 }
 
 .search {
@@ -132,6 +133,7 @@ td {
     font-size: 14px;
     padding: 10px;
     max-height: 45px;
+    text-align: center;
 }
 tr {
     max-height: 45px;
@@ -157,8 +159,10 @@ table button {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    transition: all .15s ease-in-out;
 }
 
 table button:hover {
-    background-color: var(--color-categorias);
+    background-color: var(--color-tabla);
+    color: var(--color-enlaces);
 }
