@@ -87,3 +87,80 @@ body {
 .button:hover {
     background-color: var(--color-categorias);
 }
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.popup-visible {
+    display: flex;
+}
+.popup-container {
+    background-color: var(--color-tabla);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.popup h2 {
+    font-size: 20px;
+    margin: 10px 0 20px 0;
+    text-align: center;
+    color: var(--color-enlaces);
+}
+
+.popup form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.popup form input {
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid var(--color-categorias);
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.password-field-input {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+.password-field-input:hover #passwordViewBut {
+    opacity: 1;
+}
+i {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+    height: 22px;
+    color: var(--color-categorias);
+    transition: all 0.3s ease-in-out;
+}
+
+#passwordViewBut {
+    cursor: pointer;
+    position: absolute;
+    margin-right: 10px;
+    opacity: 0;
+}
+#passwordViewBut:hover {
+    color: var(--color-enlaces);
+}
