@@ -14,6 +14,41 @@ function hidePopup() {
     document.getElementById('popup').classList.remove('popup-visible');
 }
 
+async function login() {
+    let password = document.getElementById('passwordInput').value.trim();
+    let id = document.querySelector('.popup button').id.split('-')[1];
+    let res = await fetch('https://localhost:7027/Profile/CheckLogin', {
+        method: 'POST',
+        headers: {
+            Accept: '*/*',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id,
+            password,
+        }),
+    });
+    res.json().then((data) => {
+        if (!data) return;
+        document.cookie = 'id=' + id + '; Secure; path=/';
+        location.pathname = '/';
+    });
+}
+
+function viewPassword() {
+    const passwordInput = document.getElementById('passwordInput');
+    const passwordViewBut = document.getElementById('passwordViewBut');
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        passwordViewBut.classList.remove('bi-eye');
+        passwordViewBut.classList.add('bi-eye-slash');
+    } else {
+        passwordInput.type = 'password';
+        passwordViewBut.classList.add('bi-eye');
+        passwordViewBut.classList.remove('bi-eye-slash');
+    }
+}
+
 async function drawRows() {
     let parent = document.getElementById('rows');
     let res = await fetch('https://localhost:7027/Profile');
