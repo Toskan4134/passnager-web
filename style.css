@@ -45,12 +45,12 @@ body {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 5px;
-    transition: all .15s ease-in-out;
+    transition: all 0.15s ease-in-out;
 }
 
 .buttons button:hover {
     background-color: var(--color-tabla);
-    color: var(--color-enlaces);
+    color: black;
 }
 
 .search {
@@ -58,14 +58,39 @@ body {
     width: 50%;
     gap: 20px;
 }
-.search * {
+.search select,
+.search input {
     border: none;
-    border-radius: 5px;
     font-size: 16px;
     padding: 10px;
+}
+.search select,
+.search div {
+    border-radius: 5px;
     width: 80%;
 }
-.search *:focus {
+.search div {
+    box-sizing: border-box;
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.search input {
+    width: 100%;
+}
+.search button {
+    color: white;
+    background-color: var(--color-enlaces);
+    cursor: pointer;
+    padding: 0 10px;
+    transition: all 0.1s ease-in-out;
+    border: none;
+}
+.search button:active {
+    background-color: var(--color-categorias);
+}
+.search select:focus,
+.search input:focus {
     outline: none;
     box-shadow: 0 0 5px var(--color-enlaces);
 }
@@ -103,13 +128,38 @@ ul {
 }
 
 li {
-    margin: 10px 0;
+    display: flex;
+    margin: 10px;
     padding: 10px;
     background-color: var(--color-texto);
-    border-radius: 5px;
-    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    height: 30px;
+    align-items: center;
+    gap: 10px;
 }
 
+li h3 {
+    margin: 0;
+    color: var(--color-enlaces);
+}
+
+li:hover {
+    filter: drop-shadow(0px 0px 1px var(--color-tabla))
+        drop-shadow(0px 0px 3px var(--color-tabla))
+        drop-shadow(0px 0px 5px var(--color-tabla));
+}
+.icon-container {
+    height: 30px;
+    width: 30px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+li img {
+    height: 100%;
+}
 table {
     border-collapse: collapse;
     width: 100%;
@@ -126,25 +176,29 @@ th {
     color: var(--color-texto);
     font-size: 14px;
     padding: 10px;
-    max-height: 45px;
+    max-height: 56px;
 }
 
 td {
     font-size: 14px;
     padding: 10px;
-    max-height: 45px;
-    text-align: center;
+    max-height: 56px;
 }
-tr {
-    max-height: 45px;
+tr:not(thead tr) {
+    height: 56px;
 }
 
 tr:nth-child(odd) {
     background-color: var(--color-texto);
-    color: black;
+    color: var(--color-enlaces);
 }
 tr:nth-child(even) {
     background-color: var(--color-categorias);
+}
+tr:nth-child(even) button:hover,
+tr:nth-child(even) a:hover {
+    background-color: var(--color-tabla);
+    color: var(--color-enlaces);
 }
 .actions {
     display: flex;
@@ -152,17 +206,18 @@ tr:nth-child(even) {
     justify-content: space-evenly;
 }
 
-table button {
+table button,
+table a {
     background-color: var(--color-enlaces);
     border: none;
     color: var(--color-texto);
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    transition: all .15s ease-in-out;
+    transition: all 0.15s ease-in-out;
 }
 
-table button:hover {
-    background-color: var(--color-tabla);
-    color: var(--color-enlaces);
+table button:hover,
+table a:hover {
+    background-color: var(--color-categorias);
 }
