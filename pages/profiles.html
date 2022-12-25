@@ -16,19 +16,11 @@
     <body>
         <div class="container">
             <h1>Perfiles</h1>
-            <div class="rows" id="rows">
-            </div>
+            <div class="rows" id="rows"></div>
+            <button class="button create-profile" onclick="showPopup()">Crear</button>
         </div>
         <div class="popup" id="popup">
-            <div class="popup-container">
-                <h2>Introduce la contraseña</h2>
-                <form>
-                    <div class="password-field-input">
-                        <input id="passwordInput" type="password" name="contraseña" placeholder="Contraseña" required>
-                        <i id="passwordViewBut" class="bi bi-eye"></i>
-                    </div>
-                    <button class="button" id="submitbutton">Entrar</button>
-                </form>
+            <div class="popup-container" id="popup-container">
             </div>
         </div>
         <script src="../scripts/profiles.js"></script>
