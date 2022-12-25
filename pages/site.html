@@ -16,28 +16,29 @@
         <h1>Añadir Sitio</h1>
         <form>
             <div class="campos">
-                <h3>Sitio</h3>
-                <input type="text" name="sitio" required>
+                <label for="sitio">Sitio</label>
+                <input id="sitio" type="text" name="passnager-site" oninvalid="this.classList.add('invalid')" required>
             </div>
 
 
             <div class="campos">
-                <h3>Usuario</h3>
-                <input type="text" name="usuario" required>
+                <label for="usuario">Usuario</label>
+                <input id="usuario" type="text" name="passnager-user" oninvalid="this.classList.add('invalid')"
+                    required>
 
             </div>
 
             <div class="campos">
-                <h3>URL</h3>
-                <input type="url" name="url" required>
+                <label for="url">URL</label>
+                <input id="url" type="url" name="passnager-url" oninvalid="this.classList.add('invalid')" required>
 
             </div>
 
             <div class="campos">
-                <h3>Contraseña</h3>
+                <label for="passwordInput">Contraseña</label>
                 <div class="password-field">
                     <div class="password-field-input">
-                        <input id="passwordInput" type="password" name="contraseña" required>
+                        <input id="passwordInput" type="password" oninvalid="this.classList.add('invalid')" required>
                         <i id="passwordViewBut" class="bi bi-eye"></i>
                     </div>
                     <i id="genPasswordBut" class="bi bi-arrow-counterclockwise">
@@ -47,8 +48,8 @@
             </div>
 
             <div class="campos">
-                <h3>Descripcion</h3>
-                <textarea name="descripcion"></textarea>
+                <label for="descripción">Descripcion</label>
+                <textarea id="descripción" name="passnager-description"></textarea>
             </div>
             <div class="buttons">
                 <button>Cancelar</button>

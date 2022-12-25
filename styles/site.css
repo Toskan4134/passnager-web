@@ -31,14 +31,18 @@ a {
 .campos {
     color: var(--color-categorias);
 }
-
+.invalid:required:invalid {
+    box-shadow: inset 0px 0px 0px 2px rgb(255, 110, 110);
+}
 h1 {
     font-size: 25px;
     text-align: center;
     color: var(--color-enlaces);
     margin: 0;
 }
-h3 {
+label {
+    font-size: 1.17em;
+    font-weight: bold;
     margin: 0;
 }
 .password-field {
@@ -121,6 +125,12 @@ form {
     font-size: 15px;
     top: -200%;
     width: auto;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .password-field-input {
     display: flex;
