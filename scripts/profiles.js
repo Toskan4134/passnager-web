@@ -8,8 +8,9 @@ if (cookieId && cookieId != 0) {
 const defaultImageSource =
     'https://bklyner.com/content/images/avatar/658c5875148fe3d738d2dd23da91fd3f.jpeg';
 let base64String = '';
-function showPopup(id) {
-    if (id) {
+let editMode = false;
+function showPopup(id, edit = false) {
+    if (id && !edit) {
         document.getElementById(
             'popup-container'
         ).innerHTML = `<h2>Introduce la contraseña</h2>
@@ -18,13 +19,12 @@ function showPopup(id) {
                         <input id="passwordInput" type="password" oninvalid="this.classList.add('invalid')" placeholder="Contraseña"  required>
                         <i id="passwordViewBut" class="bi bi-eye"></i>
                     </div>
-                    <div class="buttons"><button class="button" onclick="hidePopup()">Cancelar</button><button class="button" id="login">Entrar</button>
+                    <div class="buttons"><button class="button" type="button" onclick="hidePopup()">Cancelar</button><button class="button" id="login-${id}">Entrar</button>
                 </form>`;
-        document.querySelector('.popup button').id = 'submitbutton-' + id;
-    } else {
-        document.getElementById(
-            'popup-container'
-        ).innerHTML = `<h2>Crea un nuevo perfíl</h2>
+    } else if (!id || edit) {
+        document.getElementById('popup-container').innerHTML = `<h2>${
+            edit ? 'Editar Perfil' : 'Crear Perfíl'
+        }</h2>
                 <form>
                     <div class="create-edit-profile-image">
                         <img src="${defaultImageSource}" id="image-placeholder" onclick="document.getElementById('imageChanger').click()"
@@ -47,7 +47,11 @@ function showPopup(id) {
                         </div>
                     </div>
 
-                    <div class="buttons"><button class="button" onclick="hidePopup()">Cancelar</button><button class="button" id="create">Crear</button>
+                    <div class="buttons"><button class="button" type="button" onclick="hidePopup()">Cancelar</button>${
+                        edit
+                            ? `<button class="button" id="edit-${id}">Editar</button>`
+                            : '<button class="button" id="create">Crear</button>'
+                    }
                     </div>
 
                 </form>`;
@@ -59,6 +63,20 @@ function showPopup(id) {
 }
 function hidePopup() {
     document.getElementById('popup').classList.remove('popup-visible');
+    document.getElementById('accept-popup').classList.remove('popup-visible');
+}
+
+function showAcceptPopup(text, func, id) {
+    document.getElementById(
+        'accept-popup-container'
+    ).innerHTML = `<h2>¡Aviso!</h2>
+                <form>
+                    <p>${text}</p>
+                    <div class="buttons"><button class="button" type="button" onclick="hidePopup()">Cancelar</button><button class="button" id="accept">Aceptar</button>
+                </form>`;
+
+    document.getElementById('accept').addEventListener('click', () => func(id));
+    document.getElementById('accept-popup').classList.add('popup-visible');
 }
 
 function changeProfileImage() {
@@ -101,9 +119,8 @@ async function createProfile() {
     });
 }
 
-async function login() {
+async function login(id) {
     let password = document.getElementById('passwordInput').value.trim();
-    let id = document.querySelector('.popup button').id.split('-')[1];
     let res = await fetch('https://localhost:7027/Profile/CheckLogin', {
         method: 'POST',
         headers: {
@@ -137,14 +154,88 @@ function viewPassword() {
     }
 }
 
+function toggleEditMode() {
+    editMode = !editMode;
+    if (editMode) {
+        document.getElementById('toggleEditModeButton').innerText = 'Volver';
+        document.querySelectorAll('.row').forEach((e) => {
+            let editButtons = document.createElement('div');
+            editButtons.classList.add('editionButtons');
+            editButtons.innerHTML = `<button onclick="editPopup(${
+                e.id.split('-')[1]
+            })"><i class="bi bi-pencil"></i></button><button onclick="showAcceptPopup('¿Estás de acuerdo con borrar el perfil?',deleteProfile,${
+                e.id.split('-')[1]
+            })"><i class="bi bi-x-lg"></i></button>`;
+            e.replaceChild(editButtons, e.lastChild);
+        });
+    } else {
+        document.getElementById('toggleEditModeButton').innerText = 'Editar';
+        document.querySelectorAll('.row').forEach((e) => {
+            let button = document.createElement('button');
+            button.classList.add('button');
+            button.addEventListener('click', () =>
+                showPopup(e.id.split('-')[1])
+            );
+            button.innerText = `Entrar`;
+            e.replaceChild(button, e.lastChild);
+        });
+    }
+}
+
+async function editPopup(id) {
+    let res = await fetch('https://localhost:7027/Profile/' + id);
+    let data = await res.json();
+    showPopup(id, true);
+    document.getElementById('image-placeholder').src =
+        data.icon?.length > 1
+            ? 'data:image/png;base64, ' + data.icon
+            : defaultImageSource;
+    document.getElementById('usuario').value = data.name;
+    document.getElementById('passwordInput').value = data.password;
+}
+
+async function editProfile(id) {
+    let icon = document.getElementById('image-placeholder').src;
+    let res = await fetch('https://localhost:7027/Profile/', {
+        method: 'PUT',
+        headers: {
+            Accept: '*/*',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id,
+            icon:
+                icon === defaultImageSource
+                    ? null
+                    : icon.replace('data:image/png;base64, ', ''),
+            name: document.getElementById('usuario').value.trim(),
+            password: document.getElementById('passwordInput').value.trim(),
+        }),
+    });
+    res.json().then((data) => {
+        console.log(data);
+        if (!data) return;
+        location.reload();
+    });
+}
+async function deleteProfile(id) {
+    await fetch('https://localhost:7027/Profile/' + id, {
+        method: 'DELETE',
+    });
+    document.getElementById('row-' + id).remove();
+    hidePopup();
+}
+
 async function drawRows() {
     let parent = document.getElementById('rows');
+    parent.innerHTML = '';
     let res = await fetch('https://localhost:7027/Profile');
     let data = await res.json();
 
     data.forEach((profile) => {
         let row = document.createElement('div');
         row.classList.add('row');
+        row.id = `row-${profile.id}`;
         row.innerHTML = `
         <div class="icon-container"><img src="${
             profile.icon?.length > 1
@@ -162,8 +253,10 @@ async function drawRows() {
 
 document.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (e.submitter.id === 'login') login();
+    if (e.submitter.id.includes('login')) login(e.submitter.id.split('-')[1]);
     if (e.submitter.id === 'create') createProfile();
+    if (e.submitter.id.includes('edit'))
+        editProfile(e.submitter.id.split('-')[1]);
 });
 
 document.addEventListener('DOMContentLoaded', () => {
