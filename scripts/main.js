@@ -65,14 +65,13 @@ function changeTableContent(data) {
     }
     data.forEach((site) => {
         let siteElement = document.createElement('tr');
-        site.id = 'site-' + site.id;
         siteElement.innerHTML = `
             <td>${site.site}</td>
             <td>${site.user}</td>
             <td>${site.date}</td>
             <td class="actions">
                 <a href="${site.url}"><i class="bi bi-box-arrow-up-right"></i></a>
-                <button><i class="bi bi-pencil"></i></button>
+                <button onclick="goToSite('edit', ${site.id})"><i class="bi bi-pencil"></i></button>
                 <button><i class="bi bi-trash3"></i></button>
             </td>`;
         parent.appendChild(siteElement);
@@ -105,6 +104,13 @@ function searchSites() {
     } else {
         drawSites(selectedCategoryId);
     }
+}
+
+function goToSite(mode = 'create', id = selectedCategoryId) {
+    let url = new URL(`http://localhost:4134/pages/site.html`);
+    url.searchParams.set('mode', mode);
+    url.searchParams.set('id', id);
+    location.href = url;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
