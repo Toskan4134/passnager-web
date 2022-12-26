@@ -68,7 +68,8 @@ i {
     animation: hoverPopup 1s forwards;
 }
 input:not(input[type='submit']),
-textarea {
+textarea,
+select {
     outline: none;
     border: none;
     border-radius: 5px;

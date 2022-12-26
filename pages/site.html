@@ -13,8 +13,13 @@
 
 <body>
     <div class="container">
-        <h1>Añadir Sitio</h1>
+        <h1 id="title">Añadir Sitio</h1>
         <form>
+
+            <div class="campos">
+                <label for="categories">Categoría</label>
+                <select name="Categoría" id="categories"></select>
+            </div>
             <div class="campos">
                 <label for="sitio">Sitio</label>
                 <input id="sitio" type="text" name="passnager-site" oninvalid="this.classList.add('invalid')" required>
@@ -52,8 +57,8 @@
                 <textarea id="descripción" name="passnager-description"></textarea>
             </div>
             <div class="buttons">
-                <button>Cancelar</button>
-                <input type="submit" value="Crear">
+                <button type="button" onclick="closeSite()">Cancelar</button>
+                <input type="submit" id="submitButton" value="Crear">
             </div>
 
         </form>
