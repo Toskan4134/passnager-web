@@ -27,7 +27,6 @@ async function drawCategories() {
             return;
         }
         data.forEach((category) => {
-            console.log(category);
             let categoryElement = document.createElement('li');
             categoryElement.id = 'category-' + category.id;
             categoryElement.innerHTML = `<div class="icon-container"><img src="${
@@ -79,7 +78,7 @@ function changeTableContent(data) {
 }
 
 async function drawSites(id) {
-    let res = await fetch('https://localhost:7027/Site/' + id);
+    let res = await fetch('https://localhost:7027/Site/GetByCategory/' + id);
     await res.json().then((data) => {
         changeTableContent(data);
     });
@@ -87,7 +86,7 @@ async function drawSites(id) {
 
 async function drawFilteredSites(filter, value) {
     let url = new URL(
-        `https://localhost:7027/Site/${selectedCategoryId}/${filter}`
+        `https://localhost:7027/Site/GetByCategory/${selectedCategoryId}/${filter}`
     );
     url.searchParams.set('value', value);
     let res = await fetch(url.href);
@@ -107,7 +106,9 @@ function searchSites() {
 }
 
 function goToSite(mode = 'create', id = selectedCategoryId) {
-    let url = new URL(`http://localhost:4134/pages/site.html`);
+    if (mode === 'create' && !selectedCategoryId) return;
+    let url = new URL(location.href);
+    url.pathname = '/pages/site.html';
     url.searchParams.set('mode', mode);
     url.searchParams.set('id', id);
     location.href = url;
