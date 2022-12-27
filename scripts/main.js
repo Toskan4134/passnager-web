@@ -81,6 +81,7 @@ function changeTableContent(data) {
     }
     data.forEach((site) => {
         let siteElement = document.createElement('tr');
+        siteElement.id = 'site-' + site.id;
         siteElement.innerHTML = `
             <td>${site.site}</td>
             <td>${site.user}</td>
@@ -88,7 +89,7 @@ function changeTableContent(data) {
             <td class="actions">
                 <a href="${site.url}"><i class="bi bi-box-arrow-up-right"></i></a>
                 <button onclick="goToSite('edit', ${site.id})"><i class="bi bi-pencil"></i></button>
-                <button><i class="bi bi-trash3"></i></button>
+                <button onclick="showAcceptPopup('¿Estás de acuerdo con borrar el sitio?', deleteSite, ${site.id})"><i class="bi bi-trash3"></i></button>
             </td>`;
         parent.appendChild(siteElement);
     });
@@ -129,6 +130,14 @@ function goToSite(mode = 'create', id = selectedCategoryId) {
     url.searchParams.set('mode', mode);
     url.searchParams.set('id', id);
     location.href = url;
+}
+
+async function deleteSite(id) {
+    await fetch('https://localhost:7027/Site/' + id, {
+        method: 'DELETE',
+    });
+    document.getElementById('site-' + id).remove();
+    hidePopup();
 }
 
 function showPopup(id) {
@@ -236,6 +245,7 @@ async function deleteCategory(id) {
     await fetch('https://localhost:7027/Category/' + id, {
         method: 'DELETE',
     });
+    document.querySelectorAll('#categories li').item(0).click();
     document.getElementById('category-' + id).remove();
     hidePopup();
 }
@@ -272,6 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('submit', (e) => {
+    e.preventDefault();
     if (e.submitter.id === 'create') createCategory();
     if (e.submitter.id === 'edit') editCategory();
 });
