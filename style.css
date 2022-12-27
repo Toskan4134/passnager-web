@@ -17,7 +17,6 @@ body {
 #contenedor-principal {
     display: flex;
 }
-
 #columna-izquierda {
     display: flex;
     flex-direction: column;
@@ -37,7 +36,7 @@ body {
     background-color: var(--color-enlaces);
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -45,6 +44,7 @@ body {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 5px;
+    min-width: 45%;
     transition: all 0.15s ease-in-out;
 }
 
@@ -120,16 +120,18 @@ h1 {
 }
 
 ul {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     list-style: none;
     margin: 0;
-    padding: 0;
     max-height: 90%;
     overflow-y: auto;
 }
 
 li {
     display: flex;
-    margin: 10px;
     padding: 10px;
     background-color: var(--color-texto);
     border-radius: 8px;
@@ -220,4 +222,121 @@ table a {
 table button:hover,
 table a:hover {
     background-color: var(--color-categorias);
+}
+
+.popup {
+    z-index: 2;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.popup-visible {
+    display: flex;
+}
+.popup-container {
+    background-color: var(--color-tabla);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.popup h2 {
+    font-size: 20px;
+    margin: 10px 0 20px 0;
+    text-align: center;
+    color: var(--color-enlaces);
+}
+
+.popup form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.popup form input {
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid var(--color-categorias);
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.popup .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.popup .button {
+    background-color: var(--color-enlaces);
+    color: var(--color-texto);
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    min-width: 40%;
+}
+.popup .button:hover {
+    background-color: var(--color-categorias);
+    color: white;
+}
+.invalid:required:invalid {
+    box-shadow: inset 0px 0px 0px 2px rgb(255, 110, 110);
+}
+
+.create-edit-profile-image {
+    position: relative;
+    height: 90px;
+    width: 90px;
+    overflow: hidden;
+    display: flex;
+    border-radius: 10px;
+    border: 6px solid var(--color-categorias);
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+}
+.create-edit-profile-image:hover #image-placeholder {
+    filter: brightness(0.65);
+}
+.create-edit-profile-image:hover i {
+    opacity: 1;
+}
+#image-placeholder {
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--color-tabla);
+}
+.create-edit-profile-image i {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    color: white;
+    font-size: 30px;
+    height: 30px;
+    width: 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+.campos {
+    width: 100%;
+    color: var(--color-categorias);
+}
+
+label {
+    font-size: 1.17em;
+    font-weight: bold;
+    margin: 0;
 }

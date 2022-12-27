@@ -14,8 +14,8 @@
     <div id="contenedor-principal">
         <div id="columna-izquierda">
             <div class="buttons">
-                <button>Add Category</button>
-                <button onclick="goToSite()">Add Site</button>
+                <button onclick="showPopup()">Añadir Categoría</button>
+                <button onclick="goToSite()">Añadir Sitio</button>
             </div>
 
             <h1>Categorías</h1>
@@ -56,6 +56,14 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+    <div class="popup" id="popup">
+        <div class="popup-container" id="popup-container">
+        </div>
+    </div>
+    <div class="popup" id="accept-popup">
+        <div class="popup-container" id="accept-popup-container">
         </div>
     </div>
     <script src="./scripts/main.js"></script>
