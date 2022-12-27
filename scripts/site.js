@@ -40,7 +40,9 @@ async function generateSite() {
         case 'create':
             submitButton.id = 'create';
             cats = await (
-                await fetch('https://localhost:7027/Category/' + cookieId)
+                await fetch(
+                    'https://localhost:7027/Category/GetByProfile/' + cookieId
+                )
             ).json();
             cats.forEach((c) => {
                 let child = document.createElement('option');
@@ -65,7 +67,9 @@ async function generateSite() {
             document.getElementById('passwordInput').value = data.password;
             document.getElementById('descripción').value = data.description;
             cats = await (
-                await fetch('https://localhost:7027/Category/' + cookieId)
+                await fetch(
+                    'https://localhost:7027/Category/GetByProfile/' + cookieId
+                )
             ).json();
             cats.forEach((c, i) => {
                 let child = document.createElement('option');
