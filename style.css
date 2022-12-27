@@ -138,11 +138,39 @@ li {
     cursor: pointer;
     transition: all 0.1s ease-in-out;
     height: 30px;
-    align-items: center;
+    justify-content: space-between;
+}
+li div:first-child {
+    display: flex;
     gap: 10px;
+    align-items: center;
+}
+.li-buttons.active:not(.h3-container) {
+    opacity: 1;
+    display: flex;
+}
+.li-buttons:not(.h3-container) {
+    padding: 0 10px;
+    opacity: 0;
+    color: var(--color-enlaces);
+    display: none;
+    gap: 20px;
+    align-items: center;
+    transition: opacity 0.3s ease-in-out;
+}
+.h3-container {
+    display: flex;
+    overflow-y: auto;
+    height: 100%;
+}
+li i {
+    font-size: 18px;
+    height: 18px;
 }
 
 li h3 {
+    padding: 5px 0;
+    word-break: break-all;
     margin: 0;
     color: var(--color-enlaces);
 }
@@ -155,6 +183,7 @@ li:hover {
 .icon-container {
     height: 30px;
     width: 30px;
+    min-width: 30px;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -236,6 +265,9 @@ table a:hover {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+#accept-popup p {
+    color: black;
 }
 
 .popup-visible {

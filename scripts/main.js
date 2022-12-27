@@ -14,7 +14,9 @@ const defaultImageSource =
 
 async function drawCategories() {
     let parent = document.getElementById('categories');
-    let res = await fetch('https://localhost:7027/Category/' + cookieId);
+    let res = await fetch(
+        'https://localhost:7027/Category/GetByProfile/' + cookieId
+    );
     await res.json().then((data) => {
         if (data.length === 0) {
             let categoryElement = document.createElement('li');
@@ -31,19 +33,32 @@ async function drawCategories() {
         data.forEach((category) => {
             let categoryElement = document.createElement('li');
             categoryElement.id = 'category-' + category.id;
-            categoryElement.innerHTML = `<div class="icon-container"><img src="${
-                category.icon?.length > 1
-                    ? 'data:image/png;base64,' + category.icon
-                    : defaultImageSource
-            }"></div><h3>${category.name}</h3>`;
+            categoryElement.innerHTML = `<div>
+                <div class="icon-container"><img src="${
+                    category.icon?.length > 1
+                        ? 'data:image/png;base64,' + category.icon
+                        : defaultImageSource
+                }"></div>
+                <div class="h3-container">
+                <h3>${category.name}</h3>
+                </div>
+            </div>
+            <div class="li-buttons">
+                <i class="bi bi-pencil" onclick="editPopup()"></i>
+                <i class="bi bi-x-lg" onclick="showAcceptPopup('¿Estás de acuerdo con borrar la categoría?', deleteCategory, ${
+                    category.id
+                })"></i>
+            </div>`;
             categoryElement.addEventListener('click', () => {
                 drawSites(category.id);
                 selectedCategoryId = category.id;
                 document.querySelectorAll('#categories li').forEach((c) => {
+                    c.lastChild.classList.remove('active');
                     c.style.boxShadow = 'none';
                 });
                 categoryElement.style.boxShadow =
                     'inset 0px 0px 0px 5px var(--color-tabla)';
+                categoryElement.lastChild.classList.add('active');
             });
             parent.appendChild(categoryElement);
         });
@@ -116,9 +131,9 @@ function goToSite(mode = 'create', id = selectedCategoryId) {
     location.href = url;
 }
 
-function showPopup() {
+function showPopup(id) {
     document.getElementById('popup-container').innerHTML = `
-            <h2>Crear Categoría</h2>
+            <h2>${id ? 'Editar Categoría' : 'Crear Categoría'} </h2>
             <form>
                 <div class="create-edit-profile-image">
                     <img src="${defaultImageSource}"
@@ -135,12 +150,28 @@ function showPopup() {
                         required>
                 </div>
                 <div class="buttons"><button class="button" type="button" onclick="hidePopup()">Cancelar</button>
-                    <button class="button" id="create">Crear</button>
+                    <button class="button" id=${id ? 'edit' : 'create'}>${
+        id ? 'Editar' : 'Crear'
+    }</button>
                 </div>
 
             </form>`;
     document.getElementById('popup').classList.add('popup-visible');
 }
+
+function showAcceptPopup(text, func, id) {
+    document.getElementById(
+        'accept-popup-container'
+    ).innerHTML = `<h2>¡Aviso!</h2>
+                <form>
+                    <p>${text}</p>
+                    <div class="buttons"><button class="button" type="button" onclick="hidePopup()">Cancelar</button><button class="button" id="accept">Aceptar</button>
+                </form>`;
+
+    document.getElementById('accept').addEventListener('click', () => func(id));
+    document.getElementById('accept-popup').classList.add('popup-visible');
+}
+
 function hidePopup() {
     document.getElementById('popup').classList.remove('popup-visible');
     document.getElementById('accept-popup').classList.remove('popup-visible');
@@ -166,6 +197,47 @@ function changeProfileImage() {
     };
 
     reader.readAsDataURL(file);
+}
+
+async function editPopup() {
+    let res = await fetch(
+        'https://localhost:7027/Category/' + selectedCategoryId
+    );
+    let data = await res.json();
+    showPopup(selectedCategoryId);
+    document.getElementById('image-placeholder').src =
+        data.icon?.length > 1
+            ? 'data:image/png;base64, ' + data.icon
+            : defaultImageSource;
+    document.getElementById('categoría').value = data.name;
+}
+
+async function editCategory() {
+    let icon = document.getElementById('image-placeholder').src;
+    let res = await fetch('https://localhost:7027/Category', {
+        method: 'PUT',
+        headers: {
+            Accept: '*/*',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id: selectedCategoryId,
+            icon: icon === defaultImageSource ? '' : base64String,
+            name: document.getElementById('categoría').value.trim(),
+        }),
+    });
+    res.json().then((data) => {
+        if (!data) return;
+        location.reload();
+    });
+}
+
+async function deleteCategory(id) {
+    await fetch('https://localhost:7027/Category/' + id, {
+        method: 'DELETE',
+    });
+    document.getElementById('category-' + id).remove();
+    hidePopup();
 }
 
 async function createCategory() {
@@ -200,9 +272,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('submit', (e) => {
-    if (e.submitter.id === 'create') {
-        createCategory();
-    }
+    if (e.submitter.id === 'create') createCategory();
+    if (e.submitter.id === 'edit') editCategory();
 });
 
 searchInput.addEventListener('input', () => {
