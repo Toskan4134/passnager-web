@@ -14,16 +14,13 @@
     <div id="contenedor-principal">
         <div id="columna-izquierda">
             <div class="buttons">
-                <button>Add Category</button>
-                <button>Add Site</button>
+                <button onclick="showPopup()">Añadir Categoría</button>
+                <button onclick="goToSite()">Añadir Sitio</button>
             </div>
 
             <h1>Categorías</h1>
-            <ul>
-                <li>Categoría 1</li>
-                <li>Categoría 2</li>
-                <li>Categoría 3</li>
-            </ul>
+            <ul id="categories"></ul>
+            <button class="button" id="endSession">Cerrrar Sesión</button>
         </div>
         <div id="tabla-derecha">
             <div class="search">
@@ -36,7 +33,12 @@
                     <option value="date">Fecha</option>
                     <option value="description">Descripción</option>
                 </select>
-                <input type="search" placeholder="Buscar...">
+                <div>
+                    <input id="searchInput" type="search" placeholder="Buscar...">
+                    <button id="searchButton"><i class="bi bi-search"></i>
+                    </button>
+                </div>
+
             </div>
             <h1>Sitios</h1>
             <div class="table-area">
@@ -49,43 +51,23 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Sitio 1</td>
-                            <td>Usuario 1</td>
-                            <td>2022-01-01</td>
-                            <td class="actions">
-                                <button><i class="bi bi-box-arrow-up-right"></i></button>
-                                <button><i class="bi bi-pencil"></i></button>
-                                <button><i class="bi bi-trash3"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Sitio 2</td>
-                            <td>Usuario 2</td>
-                            <td>2022-02-01</td>
-                            <td class="actions">
-                                <button><i class="bi bi-box-arrow-up-right"></i></button>
-                                <button><i class="bi bi-pencil"></i></button>
-                                <button><i class="bi bi-trash3"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Sitio 3</td>
-                            <td>Usuario 3</td>
-                            <td>2022-03-01</td>
-                            <td class="actions">
-                                <button><i class="bi bi-box-arrow-up-right"></i></button>
-                                <button><i class="bi bi-pencil"></i></button>
-                                <button><i class="bi bi-trash3"></i></button>
-                            </td>
-                        </tr>
+                    <tbody id="sites">
+                        <td colspan="4" style="font-style: italic; text-align: center;">No hay ninguna categoría
+                            seleccionada</td>
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
+    <div class="popup" id="popup">
+        <div class="popup-container" id="popup-container">
+        </div>
+    </div>
+    <div class="popup" id="accept-popup">
+        <div class="popup-container" id="accept-popup-container">
+        </div>
+    </div>
+    <script src="./scripts/main.js"></script>
 </body>
 
 </html>
