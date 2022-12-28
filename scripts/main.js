@@ -142,6 +142,9 @@ async function deleteSite(id) {
     await fetch('https://localhost:7027/Site/' + id, {
         method: 'DELETE',
     });
+
+    if (!document.querySelectorAll('tbody tr').item(1))
+        return location.reload();
     document.getElementById('site-' + id).remove();
     hidePopup();
 }
@@ -251,8 +254,11 @@ async function deleteCategory(id) {
     await fetch('https://localhost:7027/Category/' + id, {
         method: 'DELETE',
     });
-    document.querySelectorAll('#categories li').item(0).click();
     document.getElementById('category-' + id).remove();
+    if (!document.querySelectorAll('#categories li').item(1))
+        return location.reload();
+
+    document.querySelectorAll('#categories li').item(0).click();
     hidePopup();
 }
 
