@@ -1,0 +1,252 @@
+:root {
+    --color-principal: #28262c;
+    --color-categorias: #998fc7;
+    --color-tabla: #d4c2fc;
+    --color-texto: #f9f5ff;
+    --color-enlaces: #14248a;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--color-categorias);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    background-color: var(--color-tabla);
+    color: var(--color-texto);
+    padding: 40px;
+    border-radius: 10px;
+    gap: 40px;
+}
+
+.container h1 {
+    color: var(--color-enlaces);
+    text-align: center;
+    font-size: 24px;
+    margin: 0;
+}
+
+.rows {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    overflow-y: auto;
+    max-height: 50vh;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.icon-container {
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    display: flex;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: 4px solid var(--color-categorias);
+    justify-content: center;
+}
+
+.row img {
+    height: 100%;
+}
+
+.row h3 {
+    font-size: 18px;
+    margin-right: 10px;
+    flex-grow: 1;
+    color: var(--color-categorias);
+}
+.button {
+    background-color: var(--color-enlaces);
+    color: var(--color-texto);
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    min-width: 40%;
+}
+
+.button:hover {
+    background-color: var(--color-categorias);
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.popup-visible {
+    display: flex;
+}
+.popup-container {
+    background-color: var(--color-tabla);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.popup h2 {
+    font-size: 20px;
+    margin: 10px 0 20px 0;
+    text-align: center;
+    color: var(--color-enlaces);
+}
+
+.popup form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.popup form input {
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid var(--color-categorias);
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.invalid:required:invalid {
+    box-shadow: inset 0px 0px 0px 2px rgb(255, 110, 110);
+}
+
+.password-field-input {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+.password-field-input:hover #passwordViewBut {
+    opacity: 1;
+}
+i {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+    height: 22px;
+    color: var(--color-categorias);
+    transition: all 0.3s ease-in-out;
+}
+
+#passwordViewBut {
+    cursor: pointer;
+    position: absolute;
+    margin-right: 10px;
+    opacity: 0;
+}
+#passwordViewBut:hover {
+    color: var(--color-enlaces);
+}
+
+.create-profile {
+    width: 40%;
+}
+.campos {
+    width: 100%;
+    color: var(--color-categorias);
+}
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+label {
+    font-size: 1.17em;
+    font-weight: bold;
+    margin: 0;
+}
+.create-edit-profile-image {
+    position: relative;
+    height: 90px;
+    width: 90px;
+    overflow: hidden;
+    display: flex;
+    border-radius: 50%;
+    border: 6px solid var(--color-categorias);
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+}
+.create-edit-profile-image:hover #image-placeholder {
+    filter: brightness(0.65);
+}
+.create-edit-profile-image:hover i {
+    opacity: 1;
+}
+#image-placeholder {
+    height: 100%;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--color-tabla);
+}
+.create-edit-profile-image i {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    color: white;
+    font-size: 30px;
+    height: 30px;
+    width: 30px;
+}
+.editionButtons {
+    display: flex;
+    gap: 20px;
+}
+.editionButtons i {
+    font-size: 15px;
+    width: 15px;
+    height: 15px;
+    color: white;
+}
+.editionButtons button {
+    background-color: var(--color-enlaces);
+    border: none;
+    color: var(--color-texto);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+.editionButtons button:hover {
+    background-color: var(--color-categorias);
+}
+.no-profile {
+    color: var(--color-tabla);
+    background-color: var(--color-categorias);
+    text-align: center;
+    font-style: italic;
+    border-radius: 10px;
+}
