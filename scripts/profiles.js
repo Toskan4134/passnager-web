@@ -31,6 +31,7 @@ function showPopup(id, edit = false) {
                             alt="">
                         <i class="bi bi-pencil"></i>
                     </div>
+                    <button class="button" type="button" onclick="resetImage()">Reestablecer Imágen</button>
                     <input type="file" id="imageChanger" accept="image/*"  onchange="changeProfileImage()" style="display: none;">
 
                     <div class="campos">
@@ -65,7 +66,9 @@ function hidePopup() {
     document.getElementById('popup').classList.remove('popup-visible');
     document.getElementById('accept-popup').classList.remove('popup-visible');
 }
-
+function resetImage() {
+    document.getElementById('image-placeholder').src = defaultImageSource;
+}
 function showAcceptPopup(text, func, id) {
     document.getElementById(
         'accept-popup-container'
@@ -113,14 +116,13 @@ async function createProfile() {
         }),
     });
     res.json().then((data) => {
-        console.log(data);
         if (!data) return;
         location.reload();
     });
 }
 
 async function login(id) {
-    let password = document.getElementById('passwordInput').value.trim();
+    const password = document.getElementById('passwordInput');
     let res = await fetch('https://localhost:7027/Profile/CheckLogin', {
         method: 'POST',
         headers: {
@@ -129,12 +131,15 @@ async function login(id) {
         },
         body: JSON.stringify({
             id,
-            password,
+            password: password.value.trim(),
         }),
     });
     res.json().then((data) => {
-        console.log(data);
-        if (!data) return;
+        if (!data) {
+            password.value = '';
+            password.classList.add('invalid');
+            return;
+        }
         document.cookie = 'id=' + id + '; Secure; path=/';
         location.pathname = '/';
     });
@@ -206,14 +211,13 @@ async function editProfile(id) {
             id,
             icon:
                 icon === defaultImageSource
-                    ? null
+                    ? ''
                     : icon.replace('data:image/png;base64, ', ''),
             name: document.getElementById('usuario').value.trim(),
             password: document.getElementById('passwordInput').value.trim(),
         }),
     });
     res.json().then((data) => {
-        console.log(data);
         if (!data) return;
         location.reload();
     });
@@ -222,6 +226,9 @@ async function deleteProfile(id) {
     await fetch('https://localhost:7027/Profile/' + id, {
         method: 'DELETE',
     });
+
+    if (!document.querySelectorAll('#rows .row').item(1))
+        return location.reload();
     document.getElementById('row-' + id).remove();
     hidePopup();
 }
@@ -231,7 +238,12 @@ async function drawRows() {
     parent.innerHTML = '';
     let res = await fetch('https://localhost:7027/Profile');
     let data = await res.json();
-
+    if (data == '') {
+        let row = document.createElement('div');
+        row.classList.add('no-profile');
+        row.innerHTML = '<h3>No hay ningún perfíl creado</h3>';
+        parent.appendChild(row);
+    }
     data.forEach((profile) => {
         let row = document.createElement('div');
         row.classList.add('row');

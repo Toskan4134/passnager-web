@@ -243,3 +243,10 @@ label {
 .editionButtons button:hover {
     background-color: var(--color-categorias);
 }
+.no-profile {
+    color: var(--color-tabla);
+    background-color: var(--color-categorias);
+    text-align: center;
+    font-style: italic;
+    border-radius: 10px;
+}
