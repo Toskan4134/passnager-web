@@ -3,7 +3,7 @@ let cookieId = document.cookie
     .find((row) => row.startsWith('id='))
     ?.split('=')[1];
 if (!cookieId || cookieId == 0) {
-    location.pathname = '/pages/profiles.html';
+    location.pathname = '/profiles';
 }
 let selectedCategoryId;
 let base64String;
@@ -132,7 +132,7 @@ function searchSites() {
 function goToSite(mode = 'create', id = selectedCategoryId) {
     if (mode === 'create' && !selectedCategoryId) return;
     let url = new URL(location.href);
-    url.pathname = '/pages/site.html';
+    url.pathname = '/site';
     url.searchParams.set('mode', mode);
     url.searchParams.set('id', id);
     location.href = url;
