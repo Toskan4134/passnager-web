@@ -1,0 +1,167 @@
+:root {
+    --color-principal: #28262c;
+    --color-categorias: #998fc7;
+    --color-tabla: #d4c2fc;
+    --color-texto: #f9f5ff;
+    --color-enlaces: #14248a;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-categorias);
+    color: var(--color-texto);
+    margin: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+}
+
+.container {
+    padding: 20px;
+    background-color: var(--color-tabla);
+    width: 700px;
+    border-radius: 10px;
+}
+
+a {
+    color: var(--color-enlaces);
+}
+
+.campos {
+    color: var(--color-categorias);
+}
+.invalid:required:invalid {
+    box-shadow: inset 0px 0px 0px 2px rgb(255, 110, 110);
+}
+h1 {
+    font-size: 25px;
+    text-align: center;
+    color: var(--color-enlaces);
+    margin: 0;
+}
+label {
+    font-size: 1.17em;
+    font-weight: bold;
+    margin: 0;
+}
+.password-field {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+i {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+    height: 22px;
+    transition: all 0.3s ease-in-out;
+}
+
+#genPasswordBut:hover {
+    color: var(--color-enlaces);
+    transform: rotate(-360deg);
+}
+#genPasswordBut:hover .hover-popup {
+    animation: hoverPopup 1s forwards;
+}
+input:not(input[type='submit']),
+textarea,
+select {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+textarea {
+    height: 150px;
+    resize: none;
+    font-family: Arial, sans-serif;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 50%;
+    margin: 20px auto 0 auto;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.buttons * {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.15s ease-in-out;
+    background-color: var(--color-enlaces);
+    color: white;
+}
+
+.buttons *:hover {
+    background-color: var(--color-categorias);
+}
+
+.hover-popup {
+    pointer-events: none;
+    opacity: 0;
+    background-color: var(--color-principal);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    white-space: nowrap;
+    font-size: 15px;
+    top: -200%;
+    width: auto;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.password-field-input {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+.password-field-input:hover #passwordViewBut {
+    opacity: 1;
+}
+
+#passwordViewBut {
+    cursor: pointer;
+    position: absolute;
+    margin-right: 10px;
+    opacity: 0;
+}
+#passwordViewBut:hover {
+    color: var(--color-enlaces);
+}
+
+@keyframes hoverPopup {
+    0% {
+        opacity: 0;
+    }
+    70% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.7;
+    }
+}
