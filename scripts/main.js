@@ -49,16 +49,22 @@ async function drawCategories() {
                     category.id
                 })"></i>
             </div>`;
-            categoryElement.addEventListener('click', () => {
-                drawSites(category.id);
+            categoryElement.addEventListener('click', (e) => {
+                if (categoryElement.id === 'category-' + selectedCategoryId)
+                    return;
                 selectedCategoryId = category.id;
                 document.querySelectorAll('#categories li').forEach((c) => {
                     c.lastChild.classList.remove('active');
                     c.style.boxShadow = 'none';
                 });
+                document.getElementById('searchInput').value = '';
+                document
+                    .querySelectorAll('#filter option')
+                    .item(0).selected = true;
                 categoryElement.style.boxShadow =
                     'inset 0px 0px 0px 5px var(--color-tabla)';
                 categoryElement.lastChild.classList.add('active');
+                drawSites(category.id);
             });
             parent.appendChild(categoryElement);
         });
@@ -149,7 +155,7 @@ function showPopup(id) {
                         id="image-placeholder" onclick="document.getElementById('imageChanger').click()" alt="">
                     <i class="bi bi-pencil"></i>
                 </div>
-                <button class="button" type="button" onclick="resetImage()">Reestablecer Imágen</button>
+                <button class="button" type="button" onclick="resetImage()">Reestablecer Icono</button>
                 <input type="file" id="imageChanger" accept="image/*" onchange="changeProfileImage()"
                     style="display: none;">
 
