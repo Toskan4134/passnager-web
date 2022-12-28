@@ -285,6 +285,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('popup').addEventListener('click', (e) => {
         if (e.target.id === 'popup') hidePopup();
     });
+    searchInput.addEventListener('input', () => {
+        searchSites();
+    });
+    searchButton.addEventListener('click', () => searchSites());
+    document.getElementById('endSession').addEventListener('click', () => {
+        document.cookie = 'id=; Path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT';
+
+        console.log(document.cookie);
+        location.reload();
+    });
 });
 
 document.addEventListener('submit', (e) => {
@@ -292,8 +302,3 @@ document.addEventListener('submit', (e) => {
     if (e.submitter.id === 'create') createCategory();
     if (e.submitter.id === 'edit') editCategory();
 });
-
-searchInput.addEventListener('input', () => {
-    searchSites();
-});
-searchButton.addEventListener('click', () => searchSites());

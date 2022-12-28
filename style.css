@@ -32,7 +32,8 @@ body {
     display: flex;
     justify-content: space-between;
 }
-.buttons button {
+.buttons button,
+.button {
     background-color: var(--color-enlaces);
     border: none;
     color: white;
@@ -41,14 +42,14 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
     cursor: pointer;
     border-radius: 5px;
     min-width: 45%;
     transition: all 0.15s ease-in-out;
 }
 
-.buttons button:hover {
+.buttons button:hover,
+.button:hover {
     background-color: var(--color-tabla);
     color: black;
 }
@@ -126,7 +127,7 @@ ul {
     gap: 10px;
     list-style: none;
     margin: 0;
-    max-height: 90%;
+    height: 100%;
     overflow-y: auto;
 }
 
