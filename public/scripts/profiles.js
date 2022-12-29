@@ -16,7 +16,7 @@ function showPopup(id, edit = false) {
         ).innerHTML = `<h2>Introduce la contraseña</h2>
                 <form>
                     <div class="password-field-input">
-                        <input id="passwordInput" type="password" oninvalid="this.classList.add('invalid')" placeholder="Contraseña"  required>
+                        <input id="passwordInput" type="password" oninvalid="this.classList.add('invalid')" autocomplete="false" placeholder="Contraseña"  required>
                         <i id="passwordViewBut" class="bi bi-eye"></i>
                     </div>
                     <div class="buttons"><button class="button" type="button" onclick="hidePopup()">Cancelar</button><button class="button" id="login-${id}">Entrar</button>
@@ -42,7 +42,7 @@ function showPopup(id, edit = false) {
                     <div class="campos">
                         <label for="passwordInput">Contraseña</label>
                         <div class="password-field-input">
-                            <input id="passwordInput" type="password" oninvalid="this.classList.add('invalid')"
+                            <input id="passwordInput" type="password" autocomplete="false" oninvalid="this.classList.add('invalid')"
                                 required>
                             <i id="passwordViewBut" class="bi bi-eye"></i>
                         </div>
@@ -241,7 +241,7 @@ async function drawRows() {
     if (data == '') {
         let row = document.createElement('div');
         row.classList.add('no-profile');
-        row.innerHTML = '<h3>No hay ningún perfíl creado</h3>';
+        row.innerHTML = '<h4>No hay ningún perfíl disponible</h4>';
         parent.appendChild(row);
         return;
     }

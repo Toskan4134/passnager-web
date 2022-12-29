@@ -22,7 +22,7 @@ async function drawCategories() {
             categoryElement.innerHTML = `<h3 style="width: 100%">No hay categorías disponibles</h3>`;
             categoryElement.style.filter = 'none';
             categoryElement.style.cursor = 'auto';
-            categoryElement.style.backgroundColor = 'var(--color-extra-1)';
+            categoryElement.style.backgroundColor = 'white';
             categoryElement.style.fontStyle = 'italic';
             categoryElement.style.textAlign = 'center';
             categoryElement.style.fontSize = '14px';
