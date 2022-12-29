@@ -116,7 +116,7 @@ body {
     max-height: 100%;
 }
 h1 {
-    font-size: 25px;
+    font-size: 26px;
     text-align: center;
     color: var(--color-principal);
     margin: 0;
@@ -186,8 +186,8 @@ li h3 {
 
 li:hover {
     filter: drop-shadow(0px 0px 1px var(--color-principal))
-        drop-shadow(0px 0px 3px var(--color-principal))
-        drop-shadow(0px 0px 5px var(--color-principal));
+        drop-shadow(0px 0px 2px var(--color-principal))
+        drop-shadow(0px 0px 3px var(--color-principal));
 }
 .icon-container {
     height: 30px;

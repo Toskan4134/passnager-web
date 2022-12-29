@@ -1,15 +1,11 @@
 :root {
-    --color-principal: #28262c;
-    --color-categorias: #998fc7;
-    --color-tabla: #d4c2fc;
-    --color-texto: #f9f5ff;
-    --color-enlaces: #14248a;
     --color-principal: #ecb100;
-    --color-principal-shadow: #cf9e08;
+    --color-principal-shadow: #a77e00;
     --color-secundario: #1a1a1a;
     --color-secundario-shadow: #111111;
-    --color-extra-1: #494949;
-    --color-extra-2: #282828;
+    --color-extra-1: #666666;
+    --color-extra-2: #333333;
+    --color-extra-3: #282828;
     --color-rojo: #e94646;
 }
 
@@ -17,7 +13,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-categorias);
+    background-color: var(--color-extra-2);
     color: var(--color-texto);
     margin: 0;
     font-family: Arial, sans-serif;
@@ -26,25 +22,21 @@ body {
 
 .container {
     padding: 20px;
-    background-color: var(--color-tabla);
+    background-color: var(--color-secundario);
     width: 700px;
     border-radius: 10px;
 }
 
-a {
-    color: var(--color-enlaces);
-}
-
 .campos {
-    color: var(--color-categorias);
+    color: var(--color-principal);
 }
 .invalid:required:invalid {
-    box-shadow: inset 0px 0px 0px 2px rgb(255, 110, 110);
+    box-shadow: inset 0px 0px 0px 2px var(--color-rojo);
 }
 h1 {
-    font-size: 25px;
+    font-size: 26px;
     text-align: center;
-    color: var(--color-enlaces);
+    color: var(--color-principal);
     margin: 0;
 }
 label {
@@ -68,7 +60,6 @@ i {
 }
 
 #genPasswordBut:hover {
-    color: var(--color-enlaces);
     transform: rotate(-360deg);
 }
 #genPasswordBut:hover .hover-popup {
@@ -104,27 +95,32 @@ form {
     justify-content: space-between;
 }
 
-.buttons * {
-    cursor: pointer;
-    outline: none;
+.button {
+    background-color: var(--color-secundario);
+    color: var(--color-principal);
+    box-shadow: inset 0px 0px 0px 3px var(--color-principal);
     border: none;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
     border-radius: 5px;
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
+    min-width: 45%;
     transition: all 0.15s ease-in-out;
-    background-color: var(--color-enlaces);
-    color: white;
 }
 
-.buttons *:hover {
-    background-color: var(--color-categorias);
+.button:hover {
+    background-color: var(--color-principal);
+    color: var(--color-secundario);
+    box-shadow: none;
 }
 
 .hover-popup {
     pointer-events: none;
     opacity: 0;
-    background-color: var(--color-principal);
+    background-color: var(--color-extra-2);
     color: white;
     padding: 10px;
     border-radius: 5px;
@@ -152,13 +148,23 @@ form {
 }
 
 #passwordViewBut {
+    color: var(--color-secundario);
     cursor: pointer;
     position: absolute;
     margin-right: 10px;
     opacity: 0;
 }
 #passwordViewBut:hover {
-    color: var(--color-enlaces);
+    filter: drop-shadow(0px 0px 1px var(--color-principal))
+        drop-shadow(0px 0px 3px var(--color-principal));
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 70px;
+    width: auto;
 }
 
 @keyframes hoverPopup {
@@ -169,6 +175,6 @@ form {
         opacity: 0;
     }
     100% {
-        opacity: 0.7;
+        opacity: 1;
     }
 }
