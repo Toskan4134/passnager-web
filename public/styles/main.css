@@ -53,7 +53,7 @@ body {
 
 .button:hover {
     background-color: var(--color-principal);
-    color: black;
+    color: var(--color-secundario);
     box-shadow: none;
 }
 
@@ -83,7 +83,7 @@ body {
     width: 100%;
 }
 .search button {
-    color: black;
+    color: var(--color-secundario);
     background-color: var(--color-principal);
     cursor: pointer;
     padding: 0 10px;
@@ -173,7 +173,8 @@ li i {
 }
 
 li i:hover {
-    color: var(--color-principal);
+    filter: drop-shadow(0px 0px 1px var(--color-principal))
+        drop-shadow(0px 0px 3px var(--color-principal));
 }
 
 li h3 {
@@ -244,7 +245,7 @@ table button,
 table a {
     background-color: var(--color-secundario);
     color: var(--color-principal);
-    box-shadow: 0px 0px 0px 3px var(--color-principal);
+    box-shadow: inset 0px 0px 0px 3px var(--color-principal);
     border: none;
     padding: 10px;
     border-radius: 5px;
@@ -255,7 +256,7 @@ table a {
 table button:hover,
 table a:hover {
     background-color: var(--color-principal);
-    color: black;
+    color: var(--color-secundario);
 }
 
 .popup {
@@ -297,12 +298,12 @@ table a:hover {
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    margin: 0;
 }
 
 .popup form input {
     font-size: 16px;
     padding: 10px;
-    border: 1px solid var(--color-categorias);
     width: 100%;
     outline: none;
     border: none;

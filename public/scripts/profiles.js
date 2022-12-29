@@ -243,6 +243,7 @@ async function drawRows() {
         row.classList.add('no-profile');
         row.innerHTML = '<h3>No hay ningún perfíl creado</h3>';
         parent.appendChild(row);
+        return;
     }
     data.forEach((profile) => {
         let row = document.createElement('div');
