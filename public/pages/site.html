@@ -45,7 +45,8 @@
                 <label for="passwordInput">Contraseña</label>
                 <div class="password-field">
                     <div class="password-field-input">
-                        <input id="passwordInput" type="password" oninvalid="this.classList.add('invalid')" required>
+                        <input id="passwordInput" type="password" autocomplete="false"
+                            oninvalid="this.classList.add('invalid')" required>
                         <i id="passwordViewBut" class="bi bi-eye"></i>
                     </div>
                     <i id="genPasswordBut" class="bi bi-arrow-counterclockwise">
