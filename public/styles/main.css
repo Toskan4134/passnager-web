@@ -1,16 +1,19 @@
 :root {
-    --color-principal: #28262c;
-    --color-categorias: #998fc7;
-    --color-tabla: #d4c2fc;
-    --color-texto: #f9f5ff;
-    --color-enlaces: #14248a;
+    --color-principal: #ecb100;
+    --color-principal-shadow: #a77e00;
+    --color-secundario: #1a1a1a;
+    --color-secundario-shadow: #111111;
+    --color-extra-1: #666666;
+    --color-extra-2: #333333;
+    --color-extra-3: #282828;
+    --color-rojo: #e94646;
 }
 
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: var(--color-principal);
-    color: var(--color-texto);
+    background-color: var(--color-secundario);
+    color: white;
     height: 100vh;
 }
 
@@ -32,11 +35,11 @@ body {
     display: flex;
     justify-content: space-between;
 }
-.buttons button,
 .button {
-    background-color: var(--color-enlaces);
+    background-color: var(--color-secundario);
+    color: var(--color-principal);
+    box-shadow: inset 0px 0px 0px 3px var(--color-principal);
     border: none;
-    color: white;
     padding: 15px;
     text-align: center;
     text-decoration: none;
@@ -48,10 +51,10 @@ body {
     transition: all 0.15s ease-in-out;
 }
 
-.buttons button:hover,
 .button:hover {
-    background-color: var(--color-tabla);
+    background-color: var(--color-principal);
     color: black;
+    box-shadow: none;
 }
 
 .search {
@@ -80,20 +83,19 @@ body {
     width: 100%;
 }
 .search button {
-    color: white;
-    background-color: var(--color-enlaces);
+    color: black;
+    background-color: var(--color-principal);
     cursor: pointer;
     padding: 0 10px;
     transition: all 0.1s ease-in-out;
     border: none;
 }
 .search button:active {
-    background-color: var(--color-categorias);
+    background-color: var(--color-principal-shadow);
 }
 .search select:focus,
 .search input:focus {
     outline: none;
-    box-shadow: 0 0 5px var(--color-enlaces);
 }
 
 #tabla-derecha {
@@ -102,7 +104,7 @@ body {
     flex-direction: column;
     align-items: center;
     width: 75%;
-    background-color: var(--color-tabla);
+    background-color: var(--color-extra-2);
     padding: 20px;
     height: calc(100vh - 40px);
     overflow-y: hidden;
@@ -116,7 +118,7 @@ body {
 h1 {
     font-size: 25px;
     text-align: center;
-    color: var(--color-enlaces);
+    color: var(--color-principal);
     margin: 0;
 }
 
@@ -134,7 +136,7 @@ ul {
 li {
     display: flex;
     padding: 10px;
-    background-color: var(--color-texto);
+    background-color: white;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.1s ease-in-out;
@@ -153,7 +155,7 @@ li div:first-child {
 .li-buttons:not(.h3-container) {
     padding: 0 10px;
     opacity: 0;
-    color: var(--color-enlaces);
+    color: var(--color-secundario);
     display: none;
     gap: 20px;
     align-items: center;
@@ -167,19 +169,24 @@ li div:first-child {
 li i {
     font-size: 18px;
     height: 18px;
+    transition: all 0.15s ease-in-out;
+}
+
+li i:hover {
+    color: var(--color-principal);
 }
 
 li h3 {
     padding: 5px 0;
     word-break: break-all;
     margin: 0;
-    color: var(--color-enlaces);
+    color: var(--color-secundario);
 }
 
 li:hover {
-    filter: drop-shadow(0px 0px 1px var(--color-tabla))
-        drop-shadow(0px 0px 3px var(--color-tabla))
-        drop-shadow(0px 0px 5px var(--color-tabla));
+    filter: drop-shadow(0px 0px 1px var(--color-principal))
+        drop-shadow(0px 0px 3px var(--color-principal))
+        drop-shadow(0px 0px 5px var(--color-principal));
 }
 .icon-container {
     height: 30px;
@@ -204,8 +211,8 @@ table thead th {
 }
 
 th {
-    background-color: var(--color-enlaces);
-    color: var(--color-texto);
+    background-color: var(--color-principal);
+    color: var(--color-secundario);
     font-size: 14px;
     padding: 10px;
     max-height: 56px;
@@ -221,17 +228,12 @@ tr:not(thead tr) {
 }
 
 tr:nth-child(odd) {
-    background-color: var(--color-texto);
-    color: var(--color-enlaces);
+    background-color: var(--color-extra-3);
 }
 tr:nth-child(even) {
-    background-color: var(--color-categorias);
+    background-color: var(--color-secundario);
 }
-tr:nth-child(even) button:hover,
-tr:nth-child(even) a:hover {
-    background-color: var(--color-tabla);
-    color: var(--color-enlaces);
-}
+
 .actions {
     display: flex;
     gap: 10px;
@@ -240,9 +242,10 @@ tr:nth-child(even) a:hover {
 
 table button,
 table a {
-    background-color: var(--color-enlaces);
+    background-color: var(--color-secundario);
+    color: var(--color-principal);
+    box-shadow: 0px 0px 0px 3px var(--color-principal);
     border: none;
-    color: var(--color-texto);
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
@@ -251,7 +254,8 @@ table a {
 
 table button:hover,
 table a:hover {
-    background-color: var(--color-categorias);
+    background-color: var(--color-principal);
+    color: black;
 }
 
 .popup {
@@ -262,29 +266,30 @@ table a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.75);
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 #accept-popup p {
-    color: black;
+    color: white;
 }
 
 .popup-visible {
     display: flex;
 }
 .popup-container {
-    background-color: var(--color-tabla);
+    background-color: var(--color-secundario);
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 0px 0px 10px 3px var(--color-principal);
 }
 
 .popup h2 {
-    font-size: 20px;
+    font-size: 26px;
     margin: 10px 0 20px 0;
     text-align: center;
-    color: var(--color-enlaces);
+    color: var(--color-principal);
 }
 
 .popup form {
@@ -311,22 +316,14 @@ table a:hover {
     justify-content: space-between;
 }
 .popup .button {
-    background-color: var(--color-enlaces);
-    color: var(--color-texto);
     font-size: 16px;
     padding: 10px 20px;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.15s ease-in-out;
     min-width: 40%;
 }
-.popup .button:hover {
-    background-color: var(--color-categorias);
-    color: white;
-}
 .invalid:required:invalid {
-    box-shadow: inset 0px 0px 0px 2px rgb(255, 110, 110);
+    box-shadow: inset 0px 0px 0px 2px var(--color-rojo);
 }
 
 .create-edit-profile-image {
@@ -336,13 +333,13 @@ table a:hover {
     overflow: hidden;
     display: flex;
     border-radius: 10px;
-    border: 6px solid var(--color-categorias);
+    border: 6px solid var(--color-principal);
     justify-content: center;
     cursor: pointer;
     align-items: center;
 }
 .create-edit-profile-image:hover #image-placeholder {
-    filter: brightness(0.65);
+    filter: brightness(0.35);
 }
 .create-edit-profile-image:hover i {
     opacity: 1;
@@ -350,7 +347,7 @@ table a:hover {
 #image-placeholder {
     height: 100%;
     transition: all 0.3s ease-in-out;
-    background-color: var(--color-tabla);
+    background-color: white;
 }
 .create-edit-profile-image i {
     opacity: 0;
@@ -365,11 +362,25 @@ table a:hover {
 
 .campos {
     width: 100%;
-    color: var(--color-categorias);
 }
 
 label {
+    color: var(--color-principal);
     font-size: 1.17em;
     font-weight: bold;
     margin: 0;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 70px;
+    width: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .logo {
+        display: none;
+    }
 }

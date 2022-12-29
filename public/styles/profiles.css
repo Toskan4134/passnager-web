@@ -4,6 +4,13 @@
     --color-tabla: #d4c2fc;
     --color-texto: #f9f5ff;
     --color-enlaces: #14248a;
+    --color-principal: #ecb100;
+    --color-principal-shadow: #cf9e08;
+    --color-secundario: #1a1a1a;
+    --color-secundario-shadow: #111111;
+    --color-extra-1: #494949;
+    --color-extra-2: #282828;
+    --color-rojo: #e94646;
 }
 
 body {

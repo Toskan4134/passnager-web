@@ -7,7 +7,6 @@ if (!cookieId || cookieId == 0) {
 }
 let selectedCategoryId;
 let base64String;
-let searchButton = document.getElementById('searchButton');
 let searchInput = document.getElementById('searchInput');
 const defaultImageSource =
     'https://cdn.iconscout.com/icon/free/png-256/category-2456577-2036097.png';
@@ -23,7 +22,7 @@ async function drawCategories() {
             categoryElement.innerHTML = `<h3 style="width: 100%">No hay categorías disponibles</h3>`;
             categoryElement.style.filter = 'none';
             categoryElement.style.cursor = 'auto';
-            categoryElement.style.backgroundColor = 'var(--color-tabla)';
+            categoryElement.style.backgroundColor = 'var(--color-extra-1)';
             categoryElement.style.fontStyle = 'italic';
             categoryElement.style.textAlign = 'center';
             categoryElement.style.fontSize = '14px';
@@ -62,7 +61,7 @@ async function drawCategories() {
                     .querySelectorAll('#filter option')
                     .item(0).selected = true;
                 categoryElement.style.boxShadow =
-                    'inset 0px 0px 0px 5px var(--color-tabla)';
+                    'inset 0px 0px 0px 5px var(--color-principal)';
                 categoryElement.lastChild.classList.add('active');
                 drawSites(category.id);
             });
@@ -282,6 +281,21 @@ async function createCategory() {
     });
 }
 
+function easterEgg() {
+    let audio = document.createElement('audio');
+    audio.id = 'audio';
+    audio.controls = true;
+    audio.style.display = 'none';
+    let source = document.createElement('source');
+    source.src = '../assets/easterEgg.mp3';
+    audio.appendChild(source);
+
+    document.getElementById('contenedor-principal').appendChild(audio);
+    document
+        .getElementById('searchButton')
+        .addEventListener('click', () => audio.play());
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     drawCategories().then(() => {
         let firstCategory = document.querySelectorAll('#categories li').item(0);
@@ -294,13 +308,13 @@ document.addEventListener('DOMContentLoaded', () => {
     searchInput.addEventListener('input', () => {
         searchSites();
     });
-    searchButton.addEventListener('click', () => searchSites());
     document.getElementById('endSession').addEventListener('click', () => {
         document.cookie = 'id=; Path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT';
 
         console.log(document.cookie);
         location.reload();
     });
+    easterEgg();
 });
 
 document.addEventListener('submit', (e) => {
