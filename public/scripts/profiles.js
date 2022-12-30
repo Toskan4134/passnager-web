@@ -138,6 +138,7 @@ async function login(id) {
         if (!data) {
             password.value = '';
             password.classList.add('invalid');
+            createErrorMessage('El usuario o la contraseña son incorrectos');
             return;
         }
         document.cookie = 'id=' + id + '; Secure; path=/';
@@ -262,6 +263,35 @@ async function drawRows() {
 
         parent.appendChild(row);
     });
+}
+
+function createErrorMessage(msg) {
+    let parent = document.getElementById('errors');
+    let child = document.createElement('div');
+    child.id = 'error-message';
+    child.classList.add('error-message');
+    child.innerHTML = `
+            <i class="bi bi-x-lg error-close" onclick="closeErrorMessage(this)"></i>
+            ${msg}
+        `;
+    parent.appendChild(child);
+    setTimeout(() => {
+        child.style.opacity = '1';
+    }, 0);
+    setTimeout(() => {
+        child.style.opacity = '0';
+        setTimeout(function () {
+            child.style.display = 'none';
+        }, 600);
+    }, 4 * 1000);
+}
+
+function closeErrorMessage(e) {
+    var div = e.parentElement;
+    div.style.opacity = '0';
+    setTimeout(function () {
+        div.style.display = 'none';
+    }, 600);
 }
 
 document.addEventListener('submit', (e) => {
