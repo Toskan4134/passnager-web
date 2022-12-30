@@ -129,6 +129,10 @@ function searchSites() {
 }
 
 function goToSite(mode = 'create', id = selectedCategoryId) {
+    if (!document.querySelectorAll('#categories li').item(1))
+        return createErrorMessage(
+            'No puedes crear un sitio fuera de una categoría'
+        );
     if (mode === 'create' && !selectedCategoryId) return;
     let url = new URL(location.href);
     url.pathname = '/site';
@@ -279,6 +283,35 @@ async function createCategory() {
         if (!data) return;
         location.reload();
     });
+}
+
+function createErrorMessage(msg) {
+    let parent = document.getElementById('errors');
+    let child = document.createElement('div');
+    child.id = 'error-message';
+    child.classList.add('error-message');
+    child.innerHTML = `
+            <i class="bi bi-x-lg error-close" onclick="closeErrorMessage(this)"></i>
+            ${msg}
+        `;
+    parent.appendChild(child);
+    setTimeout(() => {
+        child.style.opacity = '1';
+    }, 0);
+    setTimeout(() => {
+        child.style.opacity = '0';
+        setTimeout(function () {
+            child.style.display = 'none';
+        }, 600);
+    }, 4 * 1000);
+}
+
+function closeErrorMessage(e) {
+    var div = e.parentElement;
+    div.style.opacity = '0';
+    setTimeout(function () {
+        div.style.display = 'none';
+    }, 600);
 }
 
 function easterEgg() {

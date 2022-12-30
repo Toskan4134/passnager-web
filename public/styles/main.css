@@ -47,8 +47,10 @@ body {
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
-    min-width: 45%;
+    width: 45%;
+    min-width: min-content;
     transition: all 0.15s ease-in-out;
+    white-space: nowrap;
 }
 
 .button:hover {
@@ -83,15 +85,15 @@ body {
     width: 100%;
 }
 .search button {
-    color: var(--color-secundario);
-    background-color: var(--color-principal);
+    color: var(--color-principal);
+    background-color: var(--color-secundario);
     cursor: pointer;
     padding: 0 10px;
     transition: all 0.1s ease-in-out;
     border: none;
 }
 .search button:active {
-    background-color: var(--color-principal-shadow);
+    background-color: var(--color-extra-3);
 }
 .search select:focus,
 .search input:focus {
@@ -380,6 +382,36 @@ label {
     width: auto;
 }
 
+.errors {
+    z-index: 5;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.error-message {
+    padding: 20px;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+    background-color: var(--color-secundario);
+    border-bottom: 10px solid var(--color-rojo);
+    box-shadow: 0px 0px 10px 3px var(--color-rojo);
+}
+.error-message.active {
+    opacity: 1;
+}
+.error-close {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 @media screen and (max-width: 768px) {
     .logo {
         display: none;
