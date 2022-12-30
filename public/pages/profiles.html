@@ -20,9 +20,8 @@
             <h1>Perfiles</h1>
             <div class="rows" id="rows"></div>
             <div class="buttons">
-                <button class="button create-profile" id="toggleEditModeButton"
-                    onclick="toggleEditMode()">Editar</button>
-                <button class="button create-profile" onclick="showPopup()">Crear</button>
+                <button class="button" id="toggleEditModeButton" onclick="toggleEditMode()">Editar</button>
+                <button class="button" onclick="showPopup()">Crear</button>
             </div>
         </div>
         <div class="popup" id="popup">
@@ -32,6 +31,8 @@
         <div class="popup" id="accept-popup">
             <div class="popup-container" id="accept-popup-container">
             </div>
+        </div>
+        <div class="errors" id="errors">
         </div>
         <script src="../scripts/profiles.js"></script>
     </body>
