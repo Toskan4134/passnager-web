@@ -1,3 +1,4 @@
+const backendUri = 'https://localhost:7027/'; //'https://192.168.1.48:7027/';
 let cookieId = document.cookie
     .split('; ')
     .find((row) => row.startsWith('id='))
@@ -40,9 +41,7 @@ async function generateSite() {
         case 'create':
             submitButton.id = 'create';
             cats = await (
-                await fetch(
-                    'https://localhost:7027/Category/GetByProfile/' + cookieId
-                )
+                await fetch(backendUri + 'Category/GetByProfile/' + cookieId)
             ).json();
             cats.forEach((c) => {
                 let child = document.createElement('option');
@@ -57,7 +56,7 @@ async function generateSite() {
             submitButton.id = 'edit';
             document.getElementById('title').innerText = 'Editar Sitio';
             let res = await fetch(
-                'https://localhost:7027/Site/' + url.searchParams.get('id')
+                backendUri + 'Site/' + url.searchParams.get('id')
             );
             let data = await res.json();
             siteId = data.id;
@@ -67,9 +66,7 @@ async function generateSite() {
             document.getElementById('passwordInput').value = data.password;
             document.getElementById('descripción').value = data.description;
             cats = await (
-                await fetch(
-                    'https://localhost:7027/Category/GetByProfile/' + cookieId
-                )
+                await fetch(backendUri + 'Category/GetByProfile/' + cookieId)
             ).json();
             cats.forEach((c, i) => {
                 let child = document.createElement('option');
@@ -86,7 +83,7 @@ async function generateSite() {
 }
 
 async function editSite() {
-    let res = await fetch('https://localhost:7027/Site', {
+    let res = await fetch(backendUri + 'Site', {
         method: 'PUT',
         headers: {
             Accept: '*/*',
@@ -124,7 +121,7 @@ function closeSite() {
 }
 
 async function createSite() {
-    let res = await fetch('https://localhost:7027/Site', {
+    let res = await fetch(backendUri + 'Site', {
         method: 'POST',
         headers: {
             Accept: '*/*',

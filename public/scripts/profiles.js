@@ -1,3 +1,4 @@
+const backendUri = 'https://localhost:7027/'; //'https://192.168.1.48:7027/';
 let cookieId = document.cookie
     .split('; ')
     .find((row) => row.startsWith('id='))
@@ -103,7 +104,7 @@ function changeProfileImage() {
 
 async function createProfile() {
     let icon = document.getElementById('image-placeholder').src;
-    let res = await fetch('https://localhost:7027/Profile', {
+    let res = await fetch(backendUri + 'Profile', {
         method: 'POST',
         headers: {
             Accept: '*/*',
@@ -123,7 +124,7 @@ async function createProfile() {
 
 async function login(id) {
     const password = document.getElementById('passwordInput');
-    let res = await fetch('https://localhost:7027/Profile/CheckLogin', {
+    let res = await fetch(backendUri + 'Profile/CheckLogin', {
         method: 'POST',
         headers: {
             Accept: '*/*',
@@ -189,7 +190,7 @@ function toggleEditMode() {
 }
 
 async function editPopup(id) {
-    let res = await fetch('https://localhost:7027/Profile/' + id);
+    let res = await fetch(backendUri + 'Profile/' + id);
     let data = await res.json();
     showPopup(id, true);
     document.getElementById('image-placeholder').src =
@@ -202,7 +203,7 @@ async function editPopup(id) {
 
 async function editProfile(id) {
     let icon = document.getElementById('image-placeholder').src;
-    let res = await fetch('https://localhost:7027/Profile/', {
+    let res = await fetch(backendUri + 'Profile/', {
         method: 'PUT',
         headers: {
             Accept: '*/*',
@@ -224,7 +225,7 @@ async function editProfile(id) {
     });
 }
 async function deleteProfile(id) {
-    await fetch('https://localhost:7027/Profile/' + id, {
+    await fetch(backendUri + 'Profile/' + id, {
         method: 'DELETE',
     });
 
@@ -237,7 +238,7 @@ async function deleteProfile(id) {
 async function drawRows() {
     let parent = document.getElementById('rows');
     parent.innerHTML = '';
-    let res = await fetch('https://localhost:7027/Profile');
+    let res = await fetch(backendUri + 'Profile');
     let data = await res.json();
     if (data == '') {
         let row = document.createElement('div');

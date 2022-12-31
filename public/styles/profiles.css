@@ -225,6 +225,7 @@ label {
     opacity: 1;
 }
 #image-placeholder {
+    padding: 45px;
     height: 100%;
     transition: all 0.3s ease-in-out;
     background-color: white;

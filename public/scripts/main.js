@@ -1,3 +1,4 @@
+const backendUri = 'https://localhost:7027/'; //'https://192.168.1.48:7027/';
 let cookieId = document.cookie
     .split('; ')
     .find((row) => row.startsWith('id='))
@@ -13,9 +14,7 @@ const defaultImageSource =
 
 async function drawCategories() {
     let parent = document.getElementById('categories');
-    let res = await fetch(
-        'https://localhost:7027/Category/GetByProfile/' + cookieId
-    );
+    let res = await fetch(backendUri + 'Category/GetByProfile/' + cookieId);
     await res.json().then((data) => {
         if (data.length === 0) {
             let categoryElement = document.createElement('li');
@@ -101,7 +100,7 @@ function changeTableContent(data) {
 }
 
 async function drawSites(id) {
-    let res = await fetch('https://localhost:7027/Site/GetByCategory/' + id);
+    let res = await fetch(backendUri + 'Site/GetByCategory/' + id);
     await res.json().then((data) => {
         changeTableContent(data);
     });
@@ -109,7 +108,7 @@ async function drawSites(id) {
 
 async function drawFilteredSites(filter, value) {
     let url = new URL(
-        `https://localhost:7027/Site/GetByCategory/${selectedCategoryId}/${filter}`
+        `${backendUri}Site/GetByCategory/${selectedCategoryId}/${filter}`
     );
     url.searchParams.set('value', value);
     let res = await fetch(url.href);
@@ -128,9 +127,8 @@ function searchSites() {
     }
 }
 async function loadProfile() {
-    let res = await fetch('https://localhost:7027/Profile/' + cookieId);
+    let res = await fetch(backendUri + 'Profile/' + cookieId);
     let data = await res.json();
-    console.log(data);
     if (data.icon?.length > 1)
         document.querySelector('#profile img').src =
             'data:image/png;base64, ' + data.icon;
@@ -152,7 +150,7 @@ function goToSite(mode = 'create', id = selectedCategoryId) {
 }
 
 async function deleteSite(id) {
-    await fetch('https://localhost:7027/Site/' + id, {
+    await fetch(backendUri + 'Site/' + id, {
         method: 'DELETE',
     });
 
@@ -231,9 +229,7 @@ function changeProfileImage() {
 }
 
 async function editPopup() {
-    let res = await fetch(
-        'https://localhost:7027/Category/' + selectedCategoryId
-    );
+    let res = await fetch(backendUri + 'Category/' + selectedCategoryId);
     let data = await res.json();
     showPopup(selectedCategoryId);
     document.getElementById('image-placeholder').src =
@@ -245,7 +241,7 @@ async function editPopup() {
 
 async function editCategory() {
     let icon = document.getElementById('image-placeholder').src;
-    let res = await fetch('https://localhost:7027/Category', {
+    let res = await fetch(backendUri + 'Category', {
         method: 'PUT',
         headers: {
             Accept: '*/*',
@@ -264,7 +260,7 @@ async function editCategory() {
 }
 
 async function deleteCategory(id) {
-    await fetch('https://localhost:7027/Category/' + id, {
+    await fetch(backendUri + 'Category/' + id, {
         method: 'DELETE',
     });
     document.getElementById('category-' + id).remove();
@@ -277,7 +273,7 @@ async function deleteCategory(id) {
 
 async function createCategory() {
     let icon = document.getElementById('image-placeholder').src;
-    let res = await fetch('https://localhost:7027/Category', {
+    let res = await fetch(backendUri + 'Category', {
         method: 'POST',
         headers: {
             Accept: '*/*',
@@ -354,7 +350,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('endSession').addEventListener('click', () => {
         document.cookie = 'id=; Path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT';
 
-        console.log(document.cookie);
         location.reload();
     });
     loadProfile();

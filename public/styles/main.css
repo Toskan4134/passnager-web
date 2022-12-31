@@ -351,6 +351,7 @@ table a:hover {
     height: 100%;
     transition: all 0.3s ease-in-out;
     background-color: white;
+    padding: 45px;
 }
 .create-edit-profile-image i {
     opacity: 0;
