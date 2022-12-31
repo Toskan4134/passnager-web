@@ -3,7 +3,7 @@ let cookieId = document.cookie
     .find((row) => row.startsWith('id='))
     ?.split('=')[1];
 if (!cookieId || cookieId == 0) {
-    location.pathname = '/pages/profiles.html';
+    location.pathname = '/profiles';
 }
 let siteId;
 function generatePassword(min) {

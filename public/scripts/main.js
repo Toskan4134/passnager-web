@@ -3,11 +3,10 @@ let cookieId = document.cookie
     .find((row) => row.startsWith('id='))
     ?.split('=')[1];
 if (!cookieId || cookieId == 0) {
-    location.pathname = '/pages/profiles.html';
+    location.pathname = '/profiles';
 }
 let selectedCategoryId;
 let base64String;
-let searchButton = document.getElementById('searchButton');
 let searchInput = document.getElementById('searchInput');
 const defaultImageSource =
     'https://cdn.iconscout.com/icon/free/png-256/category-2456577-2036097.png';
@@ -23,7 +22,7 @@ async function drawCategories() {
             categoryElement.innerHTML = `<h3 style="width: 100%">No hay categorías disponibles</h3>`;
             categoryElement.style.filter = 'none';
             categoryElement.style.cursor = 'auto';
-            categoryElement.style.backgroundColor = 'var(--color-tabla)';
+            categoryElement.style.backgroundColor = 'white';
             categoryElement.style.fontStyle = 'italic';
             categoryElement.style.textAlign = 'center';
             categoryElement.style.fontSize = '14px';
@@ -62,7 +61,7 @@ async function drawCategories() {
                     .querySelectorAll('#filter option')
                     .item(0).selected = true;
                 categoryElement.style.boxShadow =
-                    'inset 0px 0px 0px 5px var(--color-tabla)';
+                    'inset 0px 0px 0px 5px var(--color-principal)';
                 categoryElement.lastChild.classList.add('active');
                 drawSites(category.id);
             });
@@ -128,11 +127,25 @@ function searchSites() {
         drawSites(selectedCategoryId);
     }
 }
+async function loadProfile() {
+    let res = await fetch('https://localhost:7027/Profile/' + cookieId);
+    let data = await res.json();
+    console.log(data);
+    if (data.icon?.length > 1)
+        document.querySelector('#profile img').src =
+            'data:image/png;base64, ' + data.icon;
 
+    document.querySelector('#profile h3').innerText = data.name;
+    document.querySelector('#profile h3').title = data.name;
+}
 function goToSite(mode = 'create', id = selectedCategoryId) {
+    if (!document.querySelectorAll('#categories li').item(1))
+        return createErrorMessage(
+            'No puedes crear un sitio fuera de una categoría'
+        );
     if (mode === 'create' && !selectedCategoryId) return;
     let url = new URL(location.href);
-    url.pathname = '/pages/site.html';
+    url.pathname = '/site';
     url.searchParams.set('mode', mode);
     url.searchParams.set('id', id);
     location.href = url;
@@ -282,6 +295,50 @@ async function createCategory() {
     });
 }
 
+function createErrorMessage(msg) {
+    let parent = document.getElementById('errors');
+    let child = document.createElement('div');
+    child.id = 'error-message';
+    child.classList.add('error-message');
+    child.innerHTML = `
+            <i class="bi bi-x-lg error-close" onclick="closeErrorMessage(this)"></i>
+            ${msg}
+        `;
+    parent.appendChild(child);
+    setTimeout(() => {
+        child.style.opacity = '1';
+    }, 0);
+    setTimeout(() => {
+        child.style.opacity = '0';
+        setTimeout(function () {
+            child.style.display = 'none';
+        }, 600);
+    }, 4 * 1000);
+}
+
+function closeErrorMessage(e) {
+    var div = e.parentElement;
+    div.style.opacity = '0';
+    setTimeout(function () {
+        div.style.display = 'none';
+    }, 600);
+}
+
+function easterEgg() {
+    let audio = document.createElement('audio');
+    audio.id = 'audio';
+    audio.controls = true;
+    audio.style.display = 'none';
+    let source = document.createElement('source');
+    source.src = '../assets/easterEgg.mp3';
+    audio.appendChild(source);
+
+    document.getElementById('contenedor-principal').appendChild(audio);
+    document
+        .getElementById('searchButton')
+        .addEventListener('click', () => audio.play());
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     drawCategories().then(() => {
         let firstCategory = document.querySelectorAll('#categories li').item(0);
@@ -294,13 +351,14 @@ document.addEventListener('DOMContentLoaded', () => {
     searchInput.addEventListener('input', () => {
         searchSites();
     });
-    searchButton.addEventListener('click', () => searchSites());
     document.getElementById('endSession').addEventListener('click', () => {
         document.cookie = 'id=; Path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT';
 
         console.log(document.cookie);
         location.reload();
     });
+    loadProfile();
+    easterEgg();
 });
 
 document.addEventListener('submit', (e) => {

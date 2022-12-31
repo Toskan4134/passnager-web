@@ -1,0 +1,23 @@
+{
+    "name": "passnager-web",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Toskan4134/passnager-web.git"
+    },
+    "author": "Toskan4134",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Toskan4134/passnager-web/issues"
+    },
+    "homepage": "https://github.com/Toskan4134/passnager-web#readme",
+    "dependencies": {
+        "express": "^4.18.2"
+    }
+}

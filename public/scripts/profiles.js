@@ -16,7 +16,7 @@ function showPopup(id, edit = false) {
         ).innerHTML = `<h2>Introduce la contraseña</h2>
                 <form>
                     <div class="password-field-input">
-                        <input id="passwordInput" type="password" oninvalid="this.classList.add('invalid')" placeholder="Contraseña"  required>
+                        <input id="passwordInput" type="password" oninvalid="this.classList.add('invalid')" autocomplete="false" placeholder="Contraseña"  required>
                         <i id="passwordViewBut" class="bi bi-eye"></i>
                     </div>
                     <div class="buttons"><button class="button" type="button" onclick="hidePopup()">Cancelar</button><button class="button" id="login-${id}">Entrar</button>
@@ -42,7 +42,7 @@ function showPopup(id, edit = false) {
                     <div class="campos">
                         <label for="passwordInput">Contraseña</label>
                         <div class="password-field-input">
-                            <input id="passwordInput" type="password" oninvalid="this.classList.add('invalid')"
+                            <input id="passwordInput" type="password" autocomplete="false" oninvalid="this.classList.add('invalid')"
                                 required>
                             <i id="passwordViewBut" class="bi bi-eye"></i>
                         </div>
@@ -138,6 +138,7 @@ async function login(id) {
         if (!data) {
             password.value = '';
             password.classList.add('invalid');
+            createErrorMessage('El usuario o la contraseña son incorrectos');
             return;
         }
         document.cookie = 'id=' + id + '; Secure; path=/';
@@ -241,8 +242,9 @@ async function drawRows() {
     if (data == '') {
         let row = document.createElement('div');
         row.classList.add('no-profile');
-        row.innerHTML = '<h3>No hay ningún perfíl creado</h3>';
+        row.innerHTML = '<h4>No hay ningún perfíl disponible</h4>';
         parent.appendChild(row);
+        return;
     }
     data.forEach((profile) => {
         let row = document.createElement('div');
@@ -254,13 +256,42 @@ async function drawRows() {
                 ? 'data:image/png;base64,' + profile.icon
                 : defaultImageSource
         }" alt=""></div>
-        <h3>${profile.name}</h3>
+        <h3 title="${profile.name}">${profile.name}</h3>
         <button class="button" onclick="showPopup(${
             profile.id
         })">Entrar</button>`;
 
         parent.appendChild(row);
     });
+}
+
+function createErrorMessage(msg) {
+    let parent = document.getElementById('errors');
+    let child = document.createElement('div');
+    child.id = 'error-message';
+    child.classList.add('error-message');
+    child.innerHTML = `
+            <i class="bi bi-x-lg error-close" onclick="closeErrorMessage(this)"></i>
+            ${msg}
+        `;
+    parent.appendChild(child);
+    setTimeout(() => {
+        child.style.opacity = '1';
+    }, 0);
+    setTimeout(() => {
+        child.style.opacity = '0';
+        setTimeout(function () {
+            child.style.display = 'none';
+        }, 600);
+    }, 4 * 1000);
+}
+
+function closeErrorMessage(e) {
+    var div = e.parentElement;
+    div.style.opacity = '0';
+    setTimeout(function () {
+        div.style.display = 'none';
+    }, 600);
 }
 
 document.addEventListener('submit', (e) => {
