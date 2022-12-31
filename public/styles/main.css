@@ -386,7 +386,7 @@ label {
     z-index: 5;
     position: fixed;
     bottom: 0;
-    right: 0;
+    right: 15px;
 }
 
 .error-message {

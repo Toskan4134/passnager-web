@@ -256,7 +256,7 @@ async function drawRows() {
                 ? 'data:image/png;base64,' + profile.icon
                 : defaultImageSource
         }" alt=""></div>
-        <h3>${profile.name}</h3>
+        <h3 title="${profile.name}">${profile.name}</h3>
         <button class="button" onclick="showPopup(${
             profile.id
         })">Entrar</button>`;

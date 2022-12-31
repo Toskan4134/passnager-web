@@ -25,10 +25,12 @@ body {
     justify-content: center;
     align-items: center;
     width: 500px;
+    min-width: 350px;
     background-color: var(--color-secundario);
     color: white;
     padding: 40px;
     border-radius: 10px;
+    box-sizing: border-box;
     gap: 40px;
 }
 
@@ -78,7 +80,7 @@ body {
     color: var(--color-principal);
     text-overflow: ellipsis;
     overflow: hidden;
-    min-width: 100px;
+    min-width: 80px;
 }
 .button {
     background-color: var(--color-secundario);
@@ -272,7 +274,7 @@ label {
     z-index: 5;
     position: fixed;
     bottom: 0;
-    right: 0;
+    right: 15px;
 }
 
 .error-message {
