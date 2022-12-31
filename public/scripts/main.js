@@ -127,7 +127,17 @@ function searchSites() {
         drawSites(selectedCategoryId);
     }
 }
+async function loadProfile() {
+    let res = await fetch('https://localhost:7027/Profile/' + cookieId);
+    let data = await res.json();
+    console.log(data);
+    if (data.icon?.length > 1)
+        document.querySelector('#profile img').src =
+            'data:image/png;base64, ' + data.icon;
 
+    document.querySelector('#profile h3').innerText = data.name;
+    document.querySelector('#profile h3').title = data.name;
+}
 function goToSite(mode = 'create', id = selectedCategoryId) {
     if (!document.querySelectorAll('#categories li').item(1))
         return createErrorMessage(
@@ -347,6 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(document.cookie);
         location.reload();
     });
+    loadProfile();
     easterEgg();
 });
 

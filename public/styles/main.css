@@ -412,6 +412,44 @@ label {
     cursor: pointer;
     transition: 0.3s;
 }
+#profile .button {
+    height: 50px;
+    max-width: 100px;
+    font-size: 20px;
+}
+#profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+#profile {
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+}
+#profile .image-container {
+    min-width: 50px;
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    display: flex;
+    border-radius: 10px;
+    border: 3px solid var(--color-principal);
+    justify-content: center;
+}
+#profile img {
+    height: 100%;
+}
+#profile h3 {
+    font-size: 18px;
+    margin: 0;
+    flex-grow: 1;
+    color: var(--color-principal);
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 @media screen and (max-width: 768px) {
     .logo {
         display: none;
