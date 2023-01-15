@@ -335,6 +335,18 @@ function easterEgg() {
         .addEventListener('click', () => audio.play());
 }
 
+function toggleSideMenu() {
+    let columna = document.getElementById('columna-izquierda');
+    console.log(columna.style.left);
+    if (columna.style.left === '0px') {
+        columna.style.left = '-100%';
+        console.log('a');
+    } else {
+        columna.style.left = '0px';
+        console.log('b');
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     drawCategories().then(() => {
         let firstCategory = document.querySelectorAll('#categories li').item(0);
@@ -351,6 +363,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.cookie = 'id=; Path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT';
 
         location.reload();
+    });
+    document.querySelectorAll('.toggle-menu-button').forEach((e) => {
+        e.addEventListener('click', () => toggleSideMenu());
     });
     loadProfile();
     easterEgg();
