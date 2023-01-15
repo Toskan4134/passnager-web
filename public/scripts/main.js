@@ -337,13 +337,10 @@ function easterEgg() {
 
 function toggleSideMenu() {
     let columna = document.getElementById('columna-izquierda');
-    console.log(columna.style.left);
     if (columna.style.left === '0px') {
         columna.style.left = '-100%';
-        console.log('a');
     } else {
         columna.style.left = '0px';
-        console.log('b');
     }
 }
 
