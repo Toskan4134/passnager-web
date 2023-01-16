@@ -1,6 +1,6 @@
 const backendUri = 'https://localhost:7027/'; //'https://192.168.1.48:7027/';
 let cookieId = document.cookie
-    .split('; ')
+    .split(', ')
     .find((row) => row.startsWith('id='))
     ?.split('=')[1];
 if (!cookieId || cookieId == 0) {

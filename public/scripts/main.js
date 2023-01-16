@@ -1,6 +1,6 @@
 const backendUri = 'https://localhost:7027/'; //'https://192.168.1.48:7027/';
 let cookieId = document.cookie
-    .split('; ')
+    .split(', ')
     .find((row) => row.startsWith('id='))
     ?.split('=')[1];
 if (!cookieId || cookieId == 0) {
@@ -357,7 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
         searchSites();
     });
     document.getElementById('endSession').addEventListener('click', () => {
-        document.cookie = 'id=; Path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT';
+        document.cookie = 'id=, Path=/,expires=Thu,01 Jan 1970 00:00:01 GMT';
 
         location.reload();
     });

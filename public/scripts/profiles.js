@@ -1,6 +1,6 @@
 const backendUri = 'https://localhost:7027/'; //'https://192.168.1.48:7027/';
 let cookieId = document.cookie
-    .split('; ')
+    .split(', ')
     .find((row) => row.startsWith('id='))
     ?.split('=')[1];
 if (cookieId && cookieId != 0) {
@@ -85,8 +85,8 @@ function showAcceptPopup(text, func, id) {
 
 function changeProfileImage() {
     var file = document.getElementById('imageChanger')['files'][0];
-    if (file.size > 100000000) {
-        alert('EL ARCHIVO ES DE MÁS DE UN GB, ESTÁS BIEN?');
+    if (file.size > 52428800) {
+        alert('Introduce una imágen con un tamaño menor a 50MB');
         file.value = '';
         return;
     }
@@ -142,7 +142,7 @@ async function login(id) {
             createErrorMessage('El usuario o la contraseña son incorrectos');
             return;
         }
-        document.cookie = 'id=' + id + '; Secure; path=/';
+        document.cookie = 'id=' + id + ', Secure; path=/';
         location.pathname = '/';
     });
 }
