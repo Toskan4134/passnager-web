@@ -1,4 +1,4 @@
-const backendUri = 'https://localhost:7027/'; //'https://192.168.1.48:7027/';
+const backendUri = 'http://localhost:5106/'; //'https://192.168.1.48:7027/';
 let cookieId = document.cookie
     .split(', ')
     .find((row) => row.startsWith('id='))
@@ -18,6 +18,7 @@ async function drawCategories() {
     await res.json().then((data) => {
         if (data.length === 0) {
             let categoryElement = document.createElement('li');
+            categoryElement.id="no-categories"
             categoryElement.innerHTML = `<h3 style="width: 100%">No hay categorías disponibles</h3>`;
             categoryElement.style.filter = 'none';
             categoryElement.style.cursor = 'auto';
@@ -137,7 +138,7 @@ async function loadProfile() {
     document.querySelector('#profile h3').title = data.name;
 }
 function goToSite(mode = 'create', id = selectedCategoryId) {
-    if (!document.querySelectorAll('#categories li').item(1))
+    if (document.querySelectorAll('#categories li').item(0).id === "no-categories")
         return createErrorMessage(
             'No puedes crear un sitio fuera de una categoría'
         );

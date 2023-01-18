@@ -65,7 +65,7 @@ i {
 #genPasswordBut:hover .hover-popup {
     animation: hoverPopup 1s forwards;
 }
-input:not(input[type='submit']),
+input,
 textarea,
 select {
     outline: none;

@@ -1,4 +1,4 @@
-const backendUri = 'https://localhost:7027/'; //'https://192.168.1.48:7027/';
+const backendUri = 'http://localhost:5106/'; //'https://192.168.1.48:7027/';
 let cookieId = document.cookie
     .split(', ')
     .find((row) => row.startsWith('id='))
