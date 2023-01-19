@@ -1,6 +1,6 @@
-const backendUri = 'https://localhost:7027/'; //'https://192.168.1.48:7027/';
+const backendUri = 'http://localhost:5106/'; //'https://192.168.1.48:7027/';
 let cookieId = document.cookie
-    .split('; ')
+    .split(', ')
     .find((row) => row.startsWith('id='))
     ?.split('=')[1];
 if (!cookieId || cookieId == 0) {
@@ -18,6 +18,7 @@ async function drawCategories() {
     await res.json().then((data) => {
         if (data.length === 0) {
             let categoryElement = document.createElement('li');
+            categoryElement.id="no-categories"
             categoryElement.innerHTML = `<h3 style="width: 100%">No hay categorías disponibles</h3>`;
             categoryElement.style.filter = 'none';
             categoryElement.style.cursor = 'auto';
@@ -137,7 +138,7 @@ async function loadProfile() {
     document.querySelector('#profile h3').title = data.name;
 }
 function goToSite(mode = 'create', id = selectedCategoryId) {
-    if (!document.querySelectorAll('#categories li').item(1))
+    if (document.querySelectorAll('#categories li').item(0).id === "no-categories")
         return createErrorMessage(
             'No puedes crear un sitio fuera de una categoría'
         );
@@ -335,6 +336,15 @@ function easterEgg() {
         .addEventListener('click', () => audio.play());
 }
 
+function toggleSideMenu() {
+    let columna = document.getElementById('columna-izquierda');
+    if (columna.style.left === '0px') {
+        columna.style.left = '-100%';
+    } else {
+        columna.style.left = '0px';
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     drawCategories().then(() => {
         let firstCategory = document.querySelectorAll('#categories li').item(0);
@@ -348,9 +358,12 @@ document.addEventListener('DOMContentLoaded', () => {
         searchSites();
     });
     document.getElementById('endSession').addEventListener('click', () => {
-        document.cookie = 'id=; Path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT';
+        document.cookie = 'id=, Path=/,expires=Thu,01 Jan 1970 00:00:01 GMT';
 
         location.reload();
+    });
+    document.querySelectorAll('.toggle-menu-button').forEach((e) => {
+        e.addEventListener('click', () => toggleSideMenu());
     });
     loadProfile();
     easterEgg();

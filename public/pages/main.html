@@ -15,6 +15,7 @@
         <img class="logo" alt="Passnager" src="../assets/passnager-logo.png">
         <div id='columna-izquierda'>
             <div class='buttons'>
+                <i class="bi bi-x-lg toggle-menu-button"></i>
                 <button onclick='showPopup()' class="button">Añadir Categoría</button>
                 <button onclick='goToSite()' class="button">Añadir Sitio</button>
             </div>
@@ -30,22 +31,25 @@
             </div>
         </div>
         <div id='tabla-derecha'>
-            <div class='search'>
-                <select name='filter' id='filter'>
-                    <option value='all' disabled selected>Buscar Por...</option>
-                    <option value='all'>Todo</option>
-                    <option value='site'>Sitio</option>
-                    <option value='url'>URL</option>
-                    <option value='user'>Usuario</option>
-                    <option value='date'>Fecha</option>
-                    <option value='description'>Descripción</option>
-                </select>
-                <div>
-                    <input id='searchInput' type='search' placeholder='Buscar...' />
-                    <button id='searchButton'><i class='bi bi-search'></i>
-                    </button>
-                </div>
+            <div class="top">
+                <i class="bi bi-list toggle-menu-button"></i>
+                <div class='search'>
+                    <select name='filter' id='filter'>
+                        <option value='all' disabled selected>Buscar Por...</option>
+                        <option value='all'>Todo</option>
+                        <option value='site'>Sitio</option>
+                        <option value='url'>URL</option>
+                        <option value='user'>Usuario</option>
+                        <option value='date'>Fecha</option>
+                        <option value='description'>Descripción</option>
+                    </select>
+                    <div>
+                        <input id='searchInput' type='search' placeholder='Buscar...' />
+                        <button id='searchButton'><i class='bi bi-search'></i>
+                        </button>
+                    </div>
 
+                </div>
             </div>
             <h1>Sitios</h1>
             <div class='table-area'>

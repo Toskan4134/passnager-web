@@ -309,3 +309,22 @@ label {
     height: 70px;
     width: auto;
 }
+
+@media screen and (max-width: 425px){
+    .container{
+        width: 100%;
+        height: 100%;
+        justify-content: space-between;
+    }
+    body{
+        align-items: normal;
+        min-width: 350px;
+        background-color: var(--color-secundario);
+    }
+}
+
+@media screen and (max-width: 768px){
+    .logo{
+        display: none;
+    }
+}
