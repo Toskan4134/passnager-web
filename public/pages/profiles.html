@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passnager | Profiles</title>
+    <link rel="icon" type="image/x-icon" href="../assets/passnager-logo.png">
+    <link rel="stylesheet" href="../styles/profiles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+
+</head>
+
+<body>
+
+    <body>
+        <img class="logo" alt="Passnager" src="../assets/passnager-logo.png">
+        <div class="container">
+            <h1>Perfiles</h1>
+            <div class="rows" id="rows"></div>
+            <div class="buttons">
+                <button class="button" id="toggleEditModeButton" onclick="toggleEditMode()">Editar</button>
+                <button class="button" onclick="showPopup()">Crear</button>
+            </div>
+        </div>
+        <div class="popup" id="popup">
+            <div class="popup-container" id="popup-container">
+            </div>
+        </div>
+        <div class="popup" id="accept-popup">
+            <div class="popup-container" id="accept-popup-container">
+            </div>
+        </div>
+        <div class="errors" id="errors">
+        </div>
+        <script src="../scripts/profiles.js"></script>
+    </body>
+
+</html>

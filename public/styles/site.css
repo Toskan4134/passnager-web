@@ -1,0 +1,203 @@
+:root {
+    --color-principal: #ecb100;
+    --color-principal-shadow: #a77e00;
+    --color-secundario: #1a1a1a;
+    --color-secundario-shadow: #111111;
+    --color-extra-1: #666666;
+    --color-extra-2: #333333;
+    --color-extra-3: #282828;
+    --color-rojo: #e94646;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-extra-2);
+    color: var(--color-texto);
+    margin: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+}
+
+.container {
+    padding: 20px;
+    background-color: var(--color-secundario);
+    width: 700px;
+    border-radius: 10px;
+}
+
+.campos {
+    color: var(--color-principal);
+}
+.invalid:required:invalid {
+    box-shadow: inset 0px 0px 0px 2px var(--color-rojo);
+}
+h1 {
+    font-size: 26px;
+    text-align: center;
+    color: var(--color-principal);
+    margin: 0;
+}
+label {
+    font-size: 1.17em;
+    font-weight: bold;
+    margin: 0;
+}
+.password-field {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+i {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+    height: 22px;
+    transition: all 0.3s ease-in-out;
+}
+
+#genPasswordBut:hover {
+    transform: rotate(-360deg);
+}
+#genPasswordBut:hover .hover-popup {
+    animation: hoverPopup 1s forwards;
+}
+input,
+textarea,
+select {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+textarea {
+    height: 150px;
+    resize: none;
+    font-family: Arial, sans-serif;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 50%;
+    margin: 20px auto 0 auto;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.button {
+    background-color: var(--color-secundario);
+    color: var(--color-principal);
+    box-shadow: inset 0px 0px 0px 3px var(--color-principal);
+    border: none;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 45%;
+    min-width: min-content;
+    transition: all 0.15s ease-in-out;
+}
+
+.button:hover {
+    background-color: var(--color-principal);
+    color: var(--color-secundario);
+    box-shadow: none;
+}
+
+.hover-popup {
+    pointer-events: none;
+    opacity: 0;
+    background-color: var(--color-extra-2);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    white-space: nowrap;
+    font-size: 15px;
+    top: -200%;
+    width: auto;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.password-field-input {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+.password-field-input:hover #passwordViewBut {
+    opacity: 1;
+}
+
+#passwordViewBut {
+    color: var(--color-secundario);
+    cursor: pointer;
+    position: absolute;
+    margin-right: 10px;
+    opacity: 0;
+}
+#passwordViewBut:hover {
+    filter: drop-shadow(0px 0px 1px var(--color-principal))
+        drop-shadow(0px 0px 3px var(--color-principal));
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 70px;
+    width: auto;
+}
+
+@keyframes hoverPopup {
+    0% {
+        opacity: 0;
+    }
+    70% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 1024px){
+    .logo{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .container{
+        width: 100%;
+        height: 100%;
+    }
+    body{
+        display: block;
+        align-items: normal;
+        background-color: var(--color-secundario);
+    }
+    form{
+        width: 80%;
+        min-width: 300px;
+    }
+}
