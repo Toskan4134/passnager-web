@@ -7,9 +7,5 @@
 > 4º Run in the current path `npm start`\
 > 5º Open Web Page ([Go to Default Web Page](http://localhost:3000))
 
-### **Option 2 (Local Code)**
-> 1º Instal Dotnet SDK 6.0+\
-> 2º Run in the current path `dotnet run`\
-> 3º Execute Front-End
 ## Dependencies
 **Express:** Used for page routing
