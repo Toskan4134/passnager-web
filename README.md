@@ -1,7 +1,7 @@
 # Passnager Web
 ## How to Install
 
-> 1º Run Back-End
+> 1º Run Back-End\
 > 2º Install Node v18+\
 > 3º Run in the current path `npm install`\
 > 4º Run in the current path `npm start`\
